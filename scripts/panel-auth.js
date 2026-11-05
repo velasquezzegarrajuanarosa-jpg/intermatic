@@ -26,8 +26,15 @@
     error.hidden = !msg;
   }
 
+  // El token vive en localStorage y, como respaldo, en la URL (?k=...)
+  function tokenActual() {
+    var k = "";
+    try { k = new URLSearchParams(location.search).get("k") || ""; } catch (e) {}
+    try { return localStorage.getItem("panelToken") || k; } catch (e) { return k; }
+  }
+
   function post(url, body) {
-    var token = localStorage.getItem("panelToken");
+    var token = tokenActual();
     return fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json", ...(token ? { "x-panel-token": token } : {}) },
@@ -40,7 +47,7 @@
   }
 
   function pedir(url) {
-    var token = localStorage.getItem("panelToken");
+    var token = tokenActual();
     return fetch(url, { cache: "no-store", headers: token ? { "x-panel-token": token } : {} })
       .then(function (r) { return r.json(); });
   }
@@ -74,7 +81,11 @@
         guardarToken(r.token);
         pista.textContent = "✔ Llave correcta";
         celdasNodo.classList.add("pl-llave__grid--exito");
-        setTimeout(function () { location.reload(); }, 600);
+        // Recargar con el token en la URL: funciona aunque el navegador
+        // bloquee cookies y localStorage. Además se puede guardar en favoritos.
+        setTimeout(function () {
+          location.href = "panel/?k=" + encodeURIComponent(r.token || "");
+        }, 600);
         return;
       }
       if (!r.ok) {

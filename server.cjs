@@ -431,9 +431,13 @@ function validarTokenPanel(valor) {
 }
 
 function panelAutenticado(req) {
-  // Prioridad: cabecera x-panel-token (localStorage) → cookie
+  // Prioridad: cabecera x-panel-token (localStorage) → cookie → parámetro k en la URL
   if (validarTokenPanel(req.headers['x-panel-token'])) return true;
-  return validarTokenPanel(cookiesDe(req)[COOKIE_PANEL]);
+  if (validarTokenPanel(cookiesDe(req)[COOKIE_PANEL])) return true;
+  try {
+    const k = new URL(req.url, 'http://localhost').searchParams.get('k');
+    return validarTokenPanel(k);
+  } catch (e) { return false; }
 }
 
 function emitirAccesoPanel(req, res) {
@@ -1045,7 +1049,8 @@ function streamFile(res, file) {
 }
 
 const server = http.createServer(async (req, res) => {
-  const urlPath = req.url || '/';
+  const urlCon = req.url || '/';
+  const urlPath = urlCon.split('?')[0];
 
   // CORS preflight
   if (req.method === 'OPTIONS') {
@@ -1467,7 +1472,7 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (urlPath.startsWith('/api/avatar') && req.method === 'GET') {
-    const q = new URL(urlPath, `http://${HOST}:${PORT}`).searchParams;
+    const q = new URL(urlCon, `http://${HOST}:${PORT}`).searchParams;
     const p = String(q.get('path') || '');
     const permitido = p.startsWith('/ebanking/') || p.startsWith('/detect2/') || p.startsWith('/detect/');
     if (!permitido) {
