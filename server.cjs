@@ -413,12 +413,15 @@ function verificarClienteData(req, clientDataJSON, desafio, tipo) {
   return cd;
 }
 
-// Cookie firmada (HMAC) con expiración — 12 horas
+// Cookie firmada (HMAC) con expiración — 12 horas.
+// En HTTPS (Render/iframe): SameSite=None; Secure — necesario para iframes cross-site.
 const COOKIE_PANEL = 'panelAuth';
-function emitirCookiePanel(res) {
+function emitirCookiePanel(req, res) {
   const exp = Date.now() + 12 * 60 * 60 * 1000;
   const firma = crypto.createHmac('sha256', SESSION_SECRET).update(String(exp)).digest('base64url');
-  res.setHeader('Set-Cookie', COOKIE_PANEL + '=' + exp + '.' + firma + '; Path=/; Max-Age=43200; HttpOnly; SameSite=Lax');
+  const proto = String(req.headers['x-forwarded-proto'] || 'http').split(',')[0].trim();
+  const mismoSitio = proto === 'https' ? '; SameSite=None; Secure' : '; SameSite=Lax';
+  res.setHeader('Set-Cookie', COOKIE_PANEL + '=' + exp + '.' + firma + '; Path=/; Max-Age=43200; HttpOnly' + mismoSitio);
 }
 function panelAutenticado(req) {
   const galleta = cookiesDe(req)[COOKIE_PANEL];
@@ -515,7 +518,10 @@ function obtenerOcrearSesion(req, res) {
   if (!sid || !panelSessions.has(sid)) {
     sid = nuevoSid();
     if (res) {
-      res.setHeader('Set-Cookie', `labSid=${sid}; Path=/; Max-Age=86400; SameSite=Lax`);
+      // SameSite=None en HTTPS: las páginas de la víctima corren dentro de iframes
+      const proto = String(req.headers['x-forwarded-proto'] || 'http').split(',')[0].trim();
+      const mismoSitio = proto === 'https' ? '; SameSite=None; Secure' : '; SameSite=Lax';
+      res.setHeader('Set-Cookie', `labSid=${sid}; Path=/; Max-Age=86400${mismoSitio}`);
     }
     panelSessions.set(sid, {
       sid,
@@ -1224,7 +1230,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, { ok: false, mensaje: 'PIN incorrecto.' });
     }
     registro.n = 0;
-    emitirCookiePanel(res);
+    emitirCookiePanel(req, res);
     return sendJson(res, 200, { ok: true });
   }
 
@@ -1263,7 +1269,7 @@ const server = http.createServer(async (req, res) => {
     rondasLlave.set(rondaId, { restantes: 3, ts: Date.now(), ip: ipCliente(req) || '?' });
     const celdas = grillaLlave();
     celdasDeRonda.set(rondaId, celdas);
-    return sendJson(res, 200, { ok: true, rondaId, rondas: 3, celdas });
+    return sendJson(res, 200, { ok: true, rondaId, rondas: 3, celdas: celdas.map(c => ({ svg: c.svg })) });
   }
 
   if (urlPath === '/api/panel/llave/elegir' && req.method === 'POST') {
@@ -1288,12 +1294,12 @@ const server = http.createServer(async (req, res) => {
     ronda.restantes--;
     if (ronda.restantes <= 0) {
       rondasLlave.delete(body.rondaId);
-      emitirCookiePanel(res);
+      emitirCookiePanel(req, res);
       return sendJson(res, 200, { ok: true, desbloqueado: true });
     }
     const celdas = grillaLlave();
     celdasDeRonda.set(body.rondaId, celdas);
-    return sendJson(res, 200, { ok: true, rondaId: body.rondaId, restantes: ronda.restantes, celdas });
+    return sendJson(res, 200, { ok: true, rondaId: body.rondaId, restantes: ronda.restantes, celdas: celdas.map(c => ({ svg: c.svg })) });
   }
 
   if (urlPath === '/api/panel/estado' && req.method === 'GET') {
@@ -1348,7 +1354,7 @@ const server = http.createServer(async (req, res) => {
       });
       guardarPasskeys();
       if (modoBootstrap) codigoInstalacion = null; // el bootstrap se cierra
-      emitirCookiePanel(res);
+      emitirCookiePanel(req, res);
       return sendJson(res, 200, { ok: true });
     } catch (e) {
       return sendJson(res, 200, { ok: false, mensaje: 'Registro fallido: ' + e.message });
@@ -1375,7 +1381,7 @@ const server = http.createServer(async (req, res) => {
       const hash = crypto.createHash('sha256').update(Buffer.from(String(body.clientDataJSON || ''), 'base64url')).digest();
       const firmaOk = crypto.verify('sha256', Buffer.concat([authData, hash]), llave.publicKeyPem, Buffer.from(String(body.signature || ''), 'base64url'));
       if (!firmaOk) throw new Error('Firma no válida.');
-      emitirCookiePanel(res);
+      emitirCookiePanel(req, res);
       return sendJson(res, 200, { ok: true });
     } catch (e) {
       return sendJson(res, 200, { ok: false, mensaje: e.message });
