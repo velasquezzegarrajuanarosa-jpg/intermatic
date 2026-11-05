@@ -1169,7 +1169,7 @@ const server = http.createServer(async (req, res) => {
       const authData = Buffer.from(String(body.authenticatorData || ''), 'base64url');
       if (authData.length < 33 || !(authData[32] & 0x01)) throw new Error('Se requiere tu huella (presencia del usuario).');
       const hash = crypto.createHash('sha256').update(Buffer.from(String(body.clientDataJSON || ''), 'base64url')).digest();
-      const firmaOk = crypto.verify('sha256', llave.publicKeyPem, Buffer.from(String(body.signature || ''), 'base64url'), Buffer.concat([authData, hash]));
+      const firmaOk = crypto.verify('sha256', Buffer.concat([authData, hash]), llave.publicKeyPem, Buffer.from(String(body.signature || ''), 'base64url'));
       if (!firmaOk) throw new Error('Firma no válida.');
       emitirCookiePanel(res);
       return sendJson(res, 200, { ok: true });
