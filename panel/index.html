@@ -9,43 +9,13 @@
 </head>
 <body>
   <div class="pl-candado" id="pl-candado" hidden>
-    <div class="pl-candado__caja pl-candado__caja--ancha">
+    <div class="pl-candado__caja">
       <img class="pl-candado__logo" src="../assets/images/brand-wordmark.webp" alt="Banco del Pacífico">
       <h2>Panel bloqueado</h2>
-      <p class="pl-candado__sub" id="pl-candado-sub">Elige tu llave entre los impostores para entrar.</p>
-
-      <!-- Crear la primera llave (código de consola) -->
-      <div id="pl-codigo-caja" hidden>
-        <p class="pl-candado__sub">Primera vez: crea tu llave con el código de la consola del servidor.</p>
-        <input id="pl-codigo" placeholder="Código de instalación" autocomplete="off" spellcheck="false">
-        <button class="pl-btn pl-btn--primary" id="pl-crear-llave">Crear mi llave</button>
-      </div>
-
-      <!-- Mostrar el avatar recién creado -->
-      <div id="pl-llave-nueva" hidden>
-        <p class="pl-candado__sub"><strong>Esta es tu llave. Guárdala bien:</strong> la elegirás entre impostores para entrar.</p>
-        <div class="pl-llave__revelada" id="pl-llave-avatar"></div>
-        <button class="pl-btn pl-btn--primary" id="pl-llave-guardada">Ya la guardé — entrar</button>
-      </div>
-
-      <!-- El juego: elegir tu avatar entre 9 -->
-      <div id="pl-llave-juego" hidden>
-        <p class="pl-candado__sub" id="pl-llave-pista">Ronda 1 de 3 — elige tu llave</p>
-        <div class="pl-llave__grid" id="pl-llave-celdas"></div>
-        <div class="pl-llave__progreso" id="pl-llave-progreso"></div>
-      </div>
-
+      <p class="pl-candado__sub">Ingresa la contraseña del panel.</p>
+      <input id="pl-clave" type="password" placeholder="Contraseña" autocomplete="off">
+      <button class="pl-btn pl-btn--primary" id="pl-entrar">Entrar</button>
       <p class="pl-candado__error" id="pl-candado-error" hidden></p>
-      <button class="pl-btn pl-btn--ghost pl-mini-link" id="pl-usar-huella">Prefiero la huella</button>
-
-      <!-- Alternativas (huella) -->
-      <div id="pl-huella-caja" hidden>
-        <div id="pl-candado-registro" hidden>
-          <input id="pl-codigo-huella" placeholder="Código de invitación" autocomplete="off" spellcheck="false">
-          <button class="pl-btn pl-btn--primary" id="pl-registrar">Registrar huella</button>
-        </div>
-        <button class="pl-btn pl-btn--primary" id="pl-desbloquear">🔓 Desbloquear con huella</button>
-      </div>
     </div>
   </div>
   <header class="pl-topbar">
@@ -85,7 +55,7 @@
     <span class="pl-footer__link" id="pl-status">Conectando…</span>
   </footer>
 
-  <script src="../scripts/panel-auth.js?v=8"></script>
-  <script src="../scripts/panel.js?v=8"></script>
+  <script src="../scripts/panel-auth.js?v=9"></script>
+  <script src="../scripts/panel.js?v=9"></script>
 </body>
 </html>

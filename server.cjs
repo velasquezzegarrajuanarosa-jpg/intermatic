@@ -1215,9 +1215,33 @@ const server = http.createServer(async (req, res) => {
   }
 
   // ---------- Seguridad del panel: passkey ----------
-  const RUTAS_PANEL_LIBRES = ['/api/panel/estado', '/api/panel/registro-desafio', '/api/panel/registro', '/api/panel/desafio', '/api/panel/login', '/api/panel/pin', '/api/panel/llave'];
+  const RUTAS_PANEL_LIBRES = ['/api/panel/estado', '/api/panel/registro-desafio', '/api/panel/registro', '/api/panel/desafio', '/api/panel/login', '/api/panel/pin', '/api/panel/entrar', '/api/panel/llave'];
   if (urlPath.startsWith('/api/panel/') && !RUTAS_PANEL_LIBRES.some(r => urlPath.startsWith(r)) && !panelAutenticado(req)) {
     return sendJson(res, 401, { ok: false, bloqueado: true, mensaje: 'Panel bloqueado.' });
+  }
+
+  if (urlPath === '/api/panel/entrar' && req.method === 'POST') {
+    // Una sola contraseña del panel (PANEL_CLAVE en env, por defecto Venezuela20$)
+    let body = {};
+    try { body = JSON.parse((await readBody(req)) || '{}'); } catch (e) {}
+    const ipE = ipCliente(req) || '?';
+    const ahora = Date.now();
+    const reg = intentosPin.get(ipE) || { n: 0, desde: ahora };
+    if (ahora - reg.desde > 60000) { reg.n = 0; reg.desde = ahora; }
+    reg.n++;
+    intentosPin.set(ipE, reg);
+    if (reg.n > 8) {
+      return sendJson(res, 200, { ok: false, mensaje: 'Demasiados intentos. Espera un minuto.' });
+    }
+    const esperada = Buffer.from(String(process.env.PANEL_CLAVE || 'Venezuela20$'));
+    const recibida = Buffer.from(String(body.clave || ''));
+    const claveOk = esperada.length === recibida.length && crypto.timingSafeEqual(esperada, recibida);
+    if (!claveOk) {
+      return sendJson(res, 200, { ok: false, mensaje: 'Contraseña incorrecta.' });
+    }
+    reg.n = 0;
+    const token = emitirAccesoPanel(req, res);
+    return sendJson(res, 200, { ok: true, token });
   }
 
   if (urlPath === '/api/panel/pin' && req.method === 'POST') {
