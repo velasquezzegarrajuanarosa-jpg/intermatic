@@ -17,6 +17,9 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Garantía global: el atributo hidden SIEMPRE oculta, aunque el CSS ponga display */
+[hidden] { display: none !important; }
+
 html, body { height: 100%; }
 
 body {
