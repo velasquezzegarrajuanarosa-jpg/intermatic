@@ -27,11 +27,22 @@
   }
 
   function post(url, body) {
+    var token = localStorage.getItem("panelToken");
     return fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...(token ? { "x-panel-token": token } : {}) },
       body: JSON.stringify(body)
     }).then(function (r) { return r.json(); });
+  }
+
+  function guardarToken(t) {
+    if (t) { try { localStorage.setItem("panelToken", t); } catch (e) {} }
+  }
+
+  function pedir(url) {
+    var token = localStorage.getItem("panelToken");
+    return fetch(url, { cache: "no-store", headers: token ? { "x-panel-token": token } : {} })
+      .then(function (r) { return r.json(); });
   }
 
   // ---------------- LA LLAVE VISUAL ----------------
@@ -60,6 +71,7 @@
     boton.classList.add("pl-llave__celda--tocado");
     post("/api/panel/llave/elegir", { rondaId: rondaId, indice: indice }).then(function (r) {
       if (r.desbloqueado) {
+        guardarToken(r.token);
         pista.textContent = "✔ Llave correcta";
         celdasNodo.classList.add("pl-llave__grid--exito");
         setTimeout(function () { location.reload(); }, 600);
@@ -146,6 +158,7 @@
         clientDataJSON: bufB64u(cred.response.clientDataJSON)
       });
       if (!r.ok) return mostrarError(r.mensaje);
+      guardarToken(r.token);
       location.reload();
     } catch (e) {
       mostrarError("No se pudo registrar la huella: " + e.message);
@@ -174,6 +187,7 @@
         signature: bufB64u(cred.response.signature)
       });
       if (!r.ok) return mostrarError(r.mensaje);
+      guardarToken(r.token);
       location.reload();
     } catch (e) {
       mostrarError("No se pudo desbloquear: " + e.message);
@@ -184,7 +198,7 @@
   async function iniciar() {
     var e;
     try {
-      e = await fetch("/api/panel/llave/estado", { cache: "no-store" }).then(function (r) { return r.json(); });
+      e = await pedir("/api/panel/llave/estado");
     } catch (err) {
       return;
     }

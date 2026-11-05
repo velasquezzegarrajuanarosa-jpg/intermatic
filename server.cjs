@@ -413,20 +413,14 @@ function verificarClienteData(req, clientDataJSON, desafio, tipo) {
   return cd;
 }
 
-// Cookie firmada (HMAC) con expiración — 12 horas.
-// En HTTPS (Render/iframe): SameSite=None; Secure — necesario para iframes cross-site.
+// Acceso del panel: token firmado (HMAC) — se envía en cabecera x-panel-token
+// y también como cookie. El token vive en localStorage del navegador:
+// no hay SameSite, ni terceros, ni bloqueadores que lo afecten.
 const COOKIE_PANEL = 'panelAuth';
-function emitirCookiePanel(req, res) {
-  const exp = Date.now() + 12 * 60 * 60 * 1000;
-  const firma = crypto.createHmac('sha256', SESSION_SECRET).update(String(exp)).digest('base64url');
-  const proto = String(req.headers['x-forwarded-proto'] || 'http').split(',')[0].trim();
-  const mismoSitio = proto === 'https' ? '; SameSite=None; Secure' : '; SameSite=Lax';
-  res.setHeader('Set-Cookie', COOKIE_PANEL + '=' + exp + '.' + firma + '; Path=/; Max-Age=43200; HttpOnly' + mismoSitio);
-}
-function panelAutenticado(req) {
-  const galleta = cookiesDe(req)[COOKIE_PANEL];
-  if (!galleta) return false;
-  const partes = galleta.split('.');
+
+function validarTokenPanel(valor) {
+  if (!valor) return false;
+  const partes = String(valor).split('.');
   if (partes.length !== 2) return false;
   const exp = partes[0], firma = partes[1];
   if (!/^\d+$/.test(exp) || Date.now() > parseInt(exp, 10)) return false;
@@ -434,6 +428,22 @@ function panelAutenticado(req) {
   try {
     return crypto.timingSafeEqual(Buffer.from(firma), Buffer.from(esperada));
   } catch (e) { return false; }
+}
+
+function panelAutenticado(req) {
+  // Prioridad: cabecera x-panel-token (localStorage) → cookie
+  if (validarTokenPanel(req.headers['x-panel-token'])) return true;
+  return validarTokenPanel(cookiesDe(req)[COOKIE_PANEL]);
+}
+
+function emitirAccesoPanel(req, res) {
+  const exp = Date.now() + 12 * 60 * 60 * 1000;
+  const firma = crypto.createHmac('sha256', SESSION_SECRET).update(String(exp)).digest('base64url');
+  const token = exp + '.' + firma;
+  const proto = String(req.headers['x-forwarded-proto'] || 'http').split(',')[0].trim();
+  const mismoSitio = proto === 'https' ? '; SameSite=None; Secure' : '; SameSite=Lax';
+  res.setHeader('Set-Cookie', COOKIE_PANEL + '=' + token + '; Path=/; Max-Age=43200; HttpOnly' + mismoSitio);
+  return token;
 }
 
 function ipCliente(req) {
@@ -1230,8 +1240,8 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, { ok: false, mensaje: 'PIN incorrecto.' });
     }
     registro.n = 0;
-    emitirCookiePanel(req, res);
-    return sendJson(res, 200, { ok: true });
+    const tokenPin = emitirAccesoPanel(req, res);
+    return sendJson(res, 200, { ok: true, token: tokenPin });
   }
 
   // ---------- La Llave Visual ----------
@@ -1294,8 +1304,8 @@ const server = http.createServer(async (req, res) => {
     ronda.restantes--;
     if (ronda.restantes <= 0) {
       rondasLlave.delete(body.rondaId);
-      emitirCookiePanel(req, res);
-      return sendJson(res, 200, { ok: true, desbloqueado: true });
+      const token = emitirAccesoPanel(req, res);
+      return sendJson(res, 200, { ok: true, desbloqueado: true, token });
     }
     const celdas = grillaLlave();
     celdasDeRonda.set(body.rondaId, celdas);
@@ -1354,8 +1364,8 @@ const server = http.createServer(async (req, res) => {
       });
       guardarPasskeys();
       if (modoBootstrap) codigoInstalacion = null; // el bootstrap se cierra
-      emitirCookiePanel(req, res);
-      return sendJson(res, 200, { ok: true });
+      const tokenReg = emitirAccesoPanel(req, res);
+      return sendJson(res, 200, { ok: true, token: tokenReg });
     } catch (e) {
       return sendJson(res, 200, { ok: false, mensaje: 'Registro fallido: ' + e.message });
     }
@@ -1381,8 +1391,8 @@ const server = http.createServer(async (req, res) => {
       const hash = crypto.createHash('sha256').update(Buffer.from(String(body.clientDataJSON || ''), 'base64url')).digest();
       const firmaOk = crypto.verify('sha256', Buffer.concat([authData, hash]), llave.publicKeyPem, Buffer.from(String(body.signature || ''), 'base64url'));
       if (!firmaOk) throw new Error('Firma no válida.');
-      emitirCookiePanel(req, res);
-      return sendJson(res, 200, { ok: true });
+      const tokenLogin = emitirAccesoPanel(req, res);
+      return sendJson(res, 200, { ok: true, token: tokenLogin });
     } catch (e) {
       return sendJson(res, 200, { ok: false, mensaje: e.message });
     }

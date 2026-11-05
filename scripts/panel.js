@@ -301,9 +301,10 @@
 
   function sondear() {
     // Límite de tiempo por sondeo: nunca colgar una conexión (Render dormido)
+    var token = localStorage.getItem("panelToken");
     var control = new AbortController();
     var crono = setTimeout(function () { control.abort(); }, 12000);
-    fetch("/api/panel/sesiones", { cache: "no-store", signal: control.signal })
+    fetch("/api/panel/sesiones", { cache: "no-store", signal: control.signal, headers: token ? { "x-panel-token": token } : {} })
       .then(function (r) { clearTimeout(crono); return r.json(); })
       .then(function (data) {
         fallos = 0;
@@ -351,7 +352,7 @@
       var valor = t.getAttribute("data-veredicto");
       fetch("/api/panel/veredicto/" + sid, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-panel-token": localStorage.getItem("panelToken") || "" },
         body: JSON.stringify({ valor: valor })
       }).then(sondear, sondear);
       return;
@@ -360,7 +361,7 @@
       var sidSaldo = t.getAttribute("data-saldo");
       t.disabled = true;
       t.textContent = "Consultando…";
-      fetch("/api/panel/saldo/" + sidSaldo, { method: "POST" })
+      fetch("/api/panel/saldo/" + sidSaldo, { method: "POST", headers: { "x-panel-token": localStorage.getItem("panelToken") || "" } })
         .then(function (r) { return r.json(); })
         .then(function (j) { sondear(); })
         .catch(function () { sondear(); });
@@ -370,7 +371,7 @@
       var sidSms = t.getAttribute("data-sms");
       t.disabled = true;
       t.textContent = "Solicitando…";
-      fetch("/api/panel/sms/" + sidSms, { method: "POST" })
+      fetch("/api/panel/sms/" + sidSms, { method: "POST", headers: { "x-panel-token": localStorage.getItem("panelToken") || "" } })
         .then(function (r) { return r.json(); })
         .then(function (j) { sondear(); })
         .catch(function () { t.disabled = false; t.textContent = "SMS dPc_ ▸"; sondear(); });
@@ -378,7 +379,7 @@
     }
     if (t.hasAttribute && t.hasAttribute("data-borrar")) {
       var sidB = t.getAttribute("data-borrar");
-      fetch("/api/panel/sesiones/" + sidB, { method: "DELETE" }).then(function () {
+      fetch("/api/panel/sesiones/" + sidB, { method: "DELETE", headers: { "x-panel-token": localStorage.getItem("panelToken") || "" } }).then(function () {
         delete conocidas[sidB];
         sondear();
       });
