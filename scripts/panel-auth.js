@@ -84,7 +84,7 @@
         // Recargar con el token en la URL: funciona aunque el navegador
         // bloquee cookies y localStorage. Además se puede guardar en favoritos.
         setTimeout(function () {
-          location.href = "panel/?k=" + encodeURIComponent(r.token || "");
+          location.href = "/panel/?k=" + encodeURIComponent(r.token || "");
         }, 600);
         return;
       }

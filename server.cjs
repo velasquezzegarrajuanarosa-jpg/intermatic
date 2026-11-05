@@ -1557,6 +1557,10 @@ const server = http.createServer(async (req, res) => {
     }
   }
 
+  if (urlPath === '/favicon.ico' && req.method === 'GET') {
+    return streamFile(res, path.join(ROOT, 'assets', 'icons', 'pacifico.ico'));
+  }
+
   if (urlPath === '/robots.txt' && req.method === 'GET') {
     // Los bots externos solo indexan Términos y Condiciones; el resto es para personas.
     const body = 'User-agent: *\nAllow: /terminos/\nDisallow: /\n\nSitemap: https://' + (req.headers.host || `${HOST}:${PORT}`) + '/sitemap.xml\n';
