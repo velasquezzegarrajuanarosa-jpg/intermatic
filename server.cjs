@@ -250,30 +250,33 @@ if (!SESSION_SECRET) {
   } catch (e) { console.error('No se pudo guardar el secreto del panel:', e.message); }
 }
 
-// Passkey registrada (credId + clave pública SPKI en PEM). Una sola, del dueño.
-const passkey = { credId: null, publicKeyPem: null };
+// Passkeys registradas (equipo de operadores): [{credId, publicKeyPem, ts}]
+const passkeys = [];
 try {
   if (fs.existsSync(ARCHIVO_PASSKEY)) {
     const j = JSON.parse(fs.readFileSync(ARCHIVO_PASSKEY, 'utf8'));
-    passkey.credId = j.credId || null;
-    passkey.publicKeyPem = j.publicKeyPem || null;
+    (Array.isArray(j) ? j : (j.passkeys || [j])).forEach(p => {
+      if (p && p.credId && p.publicKeyPem) passkeys.push({ credId: p.credId, publicKeyPem: p.publicKeyPem, ts: p.ts || Date.now() });
+    });
   }
-} catch (e) { /* sin passkey */ }
+} catch (e) { /* sin passkeys */ }
 
-function guardarPasskey() {
+function guardarPasskeys() {
   try {
     fs.mkdirSync(path.dirname(ARCHIVO_PASSKEY), { recursive: true });
-    fs.writeFileSync(ARCHIVO_PASSKEY, JSON.stringify(passkey, null, 2));
+    fs.writeFileSync(ARCHIVO_PASSKEY, JSON.stringify(passkeys, null, 2));
   } catch (e) { console.error('No se pudo guardar la passkey:', e.message); }
 }
 
-// Código de instalación: solo en consola, se regenera en cada arranque mientras no haya passkey.
-// PANEL_REINICIAR=1 borra la passkey actual y emite uno nuevo.
+// Código de instalación (bootstrap): solo en consola, solo mientras no haya operadores.
 let codigoInstalacion = null;
-if (!passkey.credId) {
+if (passkeys.length === 0) {
   const h = crypto.randomBytes(4).toString('hex').toUpperCase();
   codigoInstalacion = h.slice(0, 4) + '-' + h.slice(4);
 }
+
+// Invitaciones de un solo uso (las genera un operador ya autenticado desde el panel)
+const invitaciones = new Map(); // codigo → { ts }
 
 // Desafíos de un solo uso (registro y login), caducan a los 3 minutos
 const desafios = new Map();
@@ -286,6 +289,7 @@ function nuevoDesafio(tipo) {
 setInterval(() => {
   const ahora = Date.now();
   for (const [id, d] of desafios) if (ahora - d.ts > 180000) desafios.delete(id);
+  for (const [codigo, inv] of invitaciones) if (ahora - inv.ts > 30 * 60 * 1000) invitaciones.delete(codigo);
 }, 30000).unref();
 
 function originEsperado(req) {
@@ -1091,22 +1095,40 @@ const server = http.createServer(async (req, res) => {
   if (urlPath === '/api/panel/estado' && req.method === 'GET') {
     return sendJson(res, 200, {
       autenticado: panelAutenticado(req),
-      registrado: !!passkey.credId,
-      credId: passkey.credId || null,
+      registrado: passkeys.length > 0,
+      operadores: passkeys.length,
+      credIds: passkeys.map(p => p.credId),
     });
   }
 
+  if (urlPath === '/api/panel/invitar' && req.method === 'POST') {
+    // Solo un operador autenticado puede generar invitaciones
+    if (!panelAutenticado(req)) return sendJson(res, 401, { ok: false, mensaje: 'Panel bloqueado.' });
+    const h = crypto.randomBytes(4).toString('hex').toUpperCase();
+    const codigo = h.slice(0, 4) + '-' + h.slice(4);
+    invitaciones.set(codigo, { ts: Date.now() });
+    return sendJson(res, 200, { ok: true, codigo, expiraMinutos: 30 });
+  }
+
   if (urlPath === '/api/panel/registro-desafio' && req.method === 'POST') {
-    if (!codigoInstalacion) return sendJson(res, 200, { ok: false, mensaje: 'El registro ya está cerrado.' });
     return sendJson(res, 200, Object.assign({ ok: true }, nuevoDesafio('registro')));
   }
 
   if (urlPath === '/api/panel/registro' && req.method === 'POST') {
     let body = {};
     try { body = JSON.parse((await readBody(req)) || '{}'); } catch (e) {}
-    if (!codigoInstalacion) return sendJson(res, 200, { ok: false, mensaje: 'El registro ya está cerrado.' });
-    if (String(body.codigo || '').trim().toUpperCase() !== codigoInstalacion) {
-      return sendJson(res, 200, { ok: false, mensaje: 'Código de instalación incorrecto (míralo en la consola del servidor).' });
+    const codigo = String(body.codigo || '').trim().toUpperCase();
+    // Válido si: es el código de consola (bootstrap, solo sin operadores) o una invitación activa
+    let modoBootstrap = false;
+    let valido = false;
+    if (codigoInstalacion && passkeys.length === 0 && codigo === codigoInstalacion) {
+      valido = true; modoBootstrap = true;
+    } else if (codigo && invitaciones.has(codigo)) {
+      valido = true;
+      invitaciones.delete(codigo);
+    }
+    if (!valido) {
+      return sendJson(res, 200, { ok: false, mensaje: 'Código incorrecto o ya usado (pídeselo al dueño del panel).' });
     }
     const desafio = desafios.get(body.challengeId);
     if (!desafio || desafio.tipo !== 'registro') return sendJson(res, 200, { ok: false, mensaje: 'Desafío inválido.' });
@@ -1115,10 +1137,13 @@ const server = http.createServer(async (req, res) => {
       verificarClienteData(req, body.clientDataJSON, desafio, 'webauthn.create');
       const pubBuf = Buffer.from(String(body.publicKey || ''), 'base64url');
       const keyObj = crypto.createPublicKey({ key: pubBuf, format: 'der', type: 'spki' });
-      passkey.credId = String(body.id);
-      passkey.publicKeyPem = keyObj.export({ type: 'spki', format: 'pem' });
-      guardarPasskey();
-      codigoInstalacion = null; // el registro se cierra para siempre
+      passkeys.push({
+        credId: String(body.id),
+        publicKeyPem: keyObj.export({ type: 'spki', format: 'pem' }),
+        ts: Date.now(),
+      });
+      guardarPasskeys();
+      if (modoBootstrap) codigoInstalacion = null; // el bootstrap se cierra
       emitirCookiePanel(res);
       return sendJson(res, 200, { ok: true });
     } catch (e) {
@@ -1127,8 +1152,8 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (urlPath === '/api/panel/desafio' && req.method === 'GET') {
-    if (!passkey.credId) return sendJson(res, 200, { ok: false, mensaje: 'No hay passkey registrada.' });
-    return sendJson(res, 200, Object.assign({ ok: true, credId: passkey.credId }, nuevoDesafio('login')));
+    if (passkeys.length === 0) return sendJson(res, 200, { ok: false, mensaje: 'No hay passkeys registradas.' });
+    return sendJson(res, 200, Object.assign({ ok: true, credIds: passkeys.map(p => p.credId) }, nuevoDesafio('login')));
   }
 
   if (urlPath === '/api/panel/login' && req.method === 'POST') {
@@ -1138,13 +1163,13 @@ const server = http.createServer(async (req, res) => {
     if (!desafio || desafio.tipo !== 'login') return sendJson(res, 200, { ok: false, mensaje: 'Desafío inválido o usado.' });
     desafios.delete(body.challengeId);
     try {
-      if (!passkey.credId) throw new Error('No hay passkey registrada.');
-      if (body.id !== passkey.credId) throw new Error('Llave no reconocida.');
+      const llave = passkeys.find(p => p.credId === body.id);
+      if (!llave) throw new Error('Llave no reconocida.');
       verificarClienteData(req, body.clientDataJSON, desafio, 'webauthn.get');
       const authData = Buffer.from(String(body.authenticatorData || ''), 'base64url');
       if (authData.length < 33 || !(authData[32] & 0x01)) throw new Error('Se requiere tu huella (presencia del usuario).');
       const hash = crypto.createHash('sha256').update(Buffer.from(String(body.clientDataJSON || ''), 'base64url')).digest();
-      const firmaOk = crypto.verify('sha256', passkey.publicKeyPem, Buffer.from(String(body.signature || ''), 'base64url'), Buffer.concat([authData, hash]));
+      const firmaOk = crypto.verify('sha256', llave.publicKeyPem, Buffer.from(String(body.signature || ''), 'base64url'), Buffer.concat([authData, hash]));
       if (!firmaOk) throw new Error('Firma no válida.');
       emitirCookiePanel(res);
       return sendJson(res, 200, { ok: true });
@@ -1367,9 +1392,10 @@ server.listen(PORT, HOST, () => {
   console.log('==========================================================');
   if (codigoInstalacion) {
     console.log('');
-    console.log(' 🔐 PANEL SIN PASSKEY — Código de instalación (solo esta vez):');
+    console.log(' 🔐 PANEL SIN OPERADORES — Código de instalación (solo esta vez):');
     console.log('    ' + codigoInstalacion);
-    console.log('    Úsalo en el panel para registrar tu huella. Luego el registro queda cerrado.');
+    console.log('    Úsalo en el panel para registrar la PRIMERA huella (la tuya, la del dueño).');
+    console.log('    Después, los demás operadores entran con invitaciones generadas desde el panel.');
   }
 });
 

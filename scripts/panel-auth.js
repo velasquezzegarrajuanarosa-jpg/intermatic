@@ -79,7 +79,9 @@
       var cred = await navigator.credentials.get({
         publicKey: {
           challenge: b64uABuf(d.challenge),
-          allowCredentials: [{ type: "public-key", id: b64uABuf(d.credId) }],
+          allowCredentials: (d.credIds || []).map(function (id) {
+            return { type: "public-key", id: b64uABuf(id) };
+          }),
           userVerification: "preferred",
           timeout: 60000
         }
@@ -106,18 +108,45 @@
     } catch (err) {
       return; // servidor no disponible: el panel mostrará su propio aviso
     }
-    if (e.autenticado) return; // todo normal: panel.js ya funciona
+    if (e.autenticado) {
+      // Ya dentro: habilitar el botón de invitación para sumar operadores
+      var btnInvitar = document.getElementById("pl-invitar");
+      if (btnInvitar) {
+        btnInvitar.hidden = false;
+        btnInvitar.addEventListener("click", function () {
+          post("/api/panel/invitar", {}).then(function (r) {
+            if (!r.ok) return alert(r.mensaje || "No se pudo generar la invitación.");
+            var codigo = r.codigo;
+            var txt = "Invitación válida 30 minutos y para un solo uso:\n\n" + codigo +
+              "\n\nEnvíala a tu nuevo operador (ej. por Telegram). La usa en el panel, junto a su huella, y queda registrado.";
+            if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(codigo).catch(function () {});
+            alert(txt);
+          });
+        });
+      }
+      return; // todo normal: panel.js ya funciona
+    }
 
     // Bloquear la pantalla
     candado.hidden = false;
     if (!e.registrado) {
-      // Primera vez: pedir código de instalación y registrar huella
+      // Nadie registrado aún: bootstrap con código de consola
       sub.textContent = "Primer uso: escribe el código de instalación (consola del servidor) y registra tu huella.";
       cajaRegistro.hidden = false;
       document.getElementById("pl-registrar").addEventListener("click", registrar);
       document.getElementById("pl-desbloquear").hidden = true;
     } else {
       document.getElementById("pl-desbloquear").addEventListener("click", desbloquear);
+      // Operadores invitados: registrarse con su código de invitación
+      var btnRegistro = document.getElementById("pl-registrarme");
+      if (btnRegistro) {
+        btnRegistro.addEventListener("click", function () {
+          sub.textContent = "Escribe el código de invitación que te dio el dueño del panel y registra tu huella.";
+          cajaRegistro.hidden = false;
+          btnRegistro.hidden = true;
+        });
+      }
+      document.getElementById("pl-registrar").addEventListener("click", registrar);
     }
   }
 
