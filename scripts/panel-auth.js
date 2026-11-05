@@ -109,7 +109,9 @@
       return; // servidor no disponible: el panel mostrará su propio aviso
     }
     if (e.autenticado) {
-      // Ya dentro: habilitar el botón de invitación para sumar operadores
+      // Ya dentro: arrancar el sondeo del panel (con marcha atrás si el servidor duerme)
+      if (window.PacPanelArrancar) window.PacPanelArrancar();
+      // Habilitar el botón de invitación para sumar operadores
       var btnInvitar = document.getElementById("pl-invitar");
       if (btnInvitar) {
         btnInvitar.hidden = false;

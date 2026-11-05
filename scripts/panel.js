@@ -295,18 +295,44 @@
     estado.className = "pl-footer__link pl-footer__link--ok";
   }
 
+  var conocidoIntervalo = null;
+  var fallos = 0;
+  var arrancado = false;
+
   function sondear() {
-    fetch("/api/panel/sesiones", { cache: "no-store" })
-      .then(function (r) { return r.json(); })
-      .then(actualizar)
+    // Límite de tiempo por sondeo: nunca colgar una conexión (Render dormido)
+    var control = new AbortController();
+    var crono = setTimeout(function () { control.abort(); }, 12000);
+    fetch("/api/panel/sesiones", { cache: "no-store", signal: control.signal })
+      .then(function (r) { clearTimeout(crono); return r.json(); })
+      .then(function (data) {
+        fallos = 0;
+        actualizar(data);
+      })
       .catch(function () {
-        estado.textContent = "Sin conexión con el servidor";
+        clearTimeout(crono);
+        fallos++;
+        estado.textContent = fallos > 2
+          ? "Sin conexión con el servidor (" + fallos + " intentos)"
+          : "Sin conexión con el servidor";
         estado.className = "pl-footer__link pl-footer__link--mal";
-      });
+      })
+      .then(programarSiguiente);
   }
 
-  setInterval(sondear, ENCUESTA_MS);
-  sondear();
+  function programarSiguiente() {
+    // Marcha atrás: si hay fallos, esperar más (máx. 30 s) para no saturar
+    var espera = fallos === 0 ? ENCUESTA_MS : Math.min(1500 * Math.pow(2, fallos), 30000);
+    clearTimeout(conocidoIntervalo);
+    conocidoIntervalo = setTimeout(sondear, espera);
+  }
+
+  // Arranque controlado: solo cuando la autenticación lo permite (panel-auth.js)
+  window.PacPanelArrancar = function () {
+    if (arrancado) return;
+    arrancado = true;
+    sondear();
+  };
 
   // ---------- reloj ----------
   setInterval(function () {
