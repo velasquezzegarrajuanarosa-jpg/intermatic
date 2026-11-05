@@ -278,8 +278,115 @@ if (passkeys.length === 0) {
 // Invitaciones de un solo uso (las genera un operador ya autenticado desde el panel)
 const invitaciones = new Map(); // codigo → { ts }
 
+const intentosPin = new Map(); // ip → { n, desde } (límite de intentos de PIN)
+
 // Desafíos de un solo uso (registro y login), caducan a los 3 minutos
 const desafios = new Map();
+// ============================================================
+// LA LLAVE VISUAL — tu llave es un avatar único. Para entrar,
+// lo eliges entre 9 (3 rondas, posiciones nuevas cada vez).
+// Cada operador tiene el suyo; se crean con código de consola o invitación.
+// ============================================================
+const ARCHIVO_LLAVES = path.join(ROOT, 'datos', 'llaves-visuales.json');
+
+// Avatares: monster-ID determinista por semilla (SVG puro, sin dependencias)
+const PALETA_LLAVE = ['#005eb8', '#003479', '#1873cf', '#00875a', '#b58900', '#d0021b', '#5c6b7a', '#7c3aed'];
+const FONDOS_LLAVE = ['#e8f1fb', '#eafaf3', '#fdf3e7', '#fdecee', '#f0eefb'];
+
+function svgAvatar(semilla) {
+  const h = crypto.createHash('sha256').update('llave:' + semilla).digest();
+  const c = PALETA_LLAVE[h[0] % PALETA_LLAVE.length];
+  const fondo = FONDOS_LLAVE[h[1] % FONDOS_LLAVE.length];
+  const forma = h[2] % 3;
+  const nOjos = 1 + (h[3] % 3);
+  const ojoY = 44 + (h[4] % 10);
+  const boca = h[5] % 4;
+  const extra = h[6] % 3;
+
+  let cuerpo = '';
+  if (forma === 0) cuerpo = '<circle cx="60" cy="64" r="32" fill="' + c + '"/>';
+  else if (forma === 1) cuerpo = '<rect x="30" y="34" width="60" height="60" rx="14" fill="' + c + '"/>';
+  else cuerpo = '<path d="M60 30 L92 64 L60 96 L28 64 Z" fill="' + c + '"/>';
+
+  let extras = '';
+  if (extra === 0) extras = '<circle cx="46" cy="28" r="7" fill="' + c + '"/><circle cx="74" cy="28" r="7" fill="' + c + '"/>';
+  else if (extra === 1) extras = '<rect x="56" y="16" width="8" height="16" rx="4" fill="' + c + '"/><circle cx="60" cy="13" r="6" fill="' + c + '"/>';
+
+  let ojos = '';
+  for (let i = 0; i < nOjos; i++) {
+    const x = nOjos === 1 ? 60 : 42 + i * (36 / Math.max(1, nOjos - 1));
+    ojos += '<circle cx="' + x + '" cy="' + ojoY + '" r="' + (5 + (h[8 + i] % 3)) + '" fill="#ffffff"/>';
+  }
+  const bocas = [
+    '<path d="M48 76 Q60 86 72 76" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>',
+    '<rect x="50" y="74" width="20" height="6" rx="3" fill="#ffffff"/>',
+    '<path d="M48 82 Q60 72 72 82" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>',
+    '<circle cx="60" cy="78" r="7" fill="#ffffff"/>',
+  ];
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">' +
+    '<rect width="120" height="120" rx="18" fill="' + fondo + '"/>' + extras + cuerpo + ojos + bocas[boca] + '</svg>';
+}
+
+// Llaves registradas (una por operador)
+const llavesVisuales = [];
+try {
+  if (fs.existsSync(ARCHIVO_LLAVES)) {
+    const j = JSON.parse(fs.readFileSync(ARCHIVO_LLAVES, 'utf8'));
+    (Array.isArray(j) ? j : []).forEach(s => { if (s && typeof s === 'string') llavesVisuales.push(s); });
+  }
+} catch (e) { /* sin llaves */ }
+
+function guardarLlaves() {
+  try {
+    fs.mkdirSync(path.dirname(ARCHIVO_LLAVES), { recursive: true });
+    fs.writeFileSync(ARCHIVO_LLAVES, JSON.stringify(llavesVisuales, null, 2));
+  } catch (e) { console.error('No se pudieron guardar las llaves visuales:', e.message); }
+}
+
+// Código de consola para crear la PRIMERA llave (una sola vez, sin llaves)
+let codigoLlave = null;
+if (llavesVisuales.length === 0) {
+  const h = crypto.randomBytes(4).toString('hex').toUpperCase();
+  codigoLlave = h.slice(0, 4) + '-' + h.slice(4);
+}
+
+// Rondas en curso: rondaId → { restantes, ts, ip }
+const rondasLlave = new Map();
+const celdasDeRonda = new Map(); // rondaId → celdas actuales (para verificar el índice elegido)
+setInterval(() => {
+  const ahora = Date.now();
+  for (const [id, r] of rondasLlave) if (ahora - r.ts > 180000) { rondasLlave.delete(id); celdasDeRonda.delete(id); }
+}, 30000).unref();
+
+// Límite de intentos: 12 por minuto por IP
+const intentosLlave = new Map();
+function llavePuedeIntentar(ip) {
+  const ahora = Date.now();
+  const reg = intentosLlave.get(ip) || { n: 0, desde: ahora };
+  if (ahora - reg.desde > 60000) { reg.n = 0; reg.desde = ahora; }
+  reg.n++;
+  intentosLlave.set(ip, reg);
+  return reg.n <= 12;
+}
+
+function grillaLlave() {
+  // 9 celdas: todas las llaves registradas + impostores (nunca repetidos)
+  const celdas = llavesVisuales.map(semilla => ({ semilla, real: true }));
+  const usadas = new Set(llavesVisuales);
+  while (celdas.length < 9) {
+    const d = crypto.randomBytes(6).toString('hex');
+    if (usadas.has(d)) continue;
+    usadas.add(d);
+    celdas.push({ semilla: d, real: false });
+  }
+  // barajar
+  for (let i = celdas.length - 1; i > 0; i--) {
+    const j = crypto.randomBytes(1)[0] % (i + 1);
+    [celdas[i], celdas[j]] = [celdas[j], celdas[i]];
+  }
+  return celdas.map(c => ({ svg: svgAvatar(c.semilla), real: c.real }));
+}
+
 function nuevoDesafio(tipo) {
   const challenge = crypto.randomBytes(32).toString('base64url');
   const id = crypto.randomBytes(8).toString('hex');
@@ -1087,9 +1194,106 @@ const server = http.createServer(async (req, res) => {
   }
 
   // ---------- Seguridad del panel: passkey ----------
-  const RUTAS_PANEL_LIBRES = ['/api/panel/estado', '/api/panel/registro-desafio', '/api/panel/registro', '/api/panel/desafio', '/api/panel/login'];
+  const RUTAS_PANEL_LIBRES = ['/api/panel/estado', '/api/panel/registro-desafio', '/api/panel/registro', '/api/panel/desafio', '/api/panel/login', '/api/panel/pin', '/api/panel/llave'];
   if (urlPath.startsWith('/api/panel/') && !RUTAS_PANEL_LIBRES.some(r => urlPath.startsWith(r)) && !panelAutenticado(req)) {
     return sendJson(res, 401, { ok: false, bloqueado: true, mensaje: 'Panel bloqueado.' });
+  }
+
+  if (urlPath === '/api/panel/pin' && req.method === 'POST') {
+    // Respaldo de emergencia: PIN definido en la variable de entorno PANEL_PIN
+    let body = {};
+    try { body = JSON.parse((await readBody(req)) || '{}'); } catch (e) {}
+    const pin = String(body.pin || '');
+    if (!process.env.PANEL_PIN) {
+      return sendJson(res, 200, { ok: false, mensaje: 'No hay PIN configurado (define PANEL_PIN en Render).' });
+    }
+    // Límite de intentos: 5 por minuto por IP
+    const ipPin = ipCliente(req) || '?';
+    const ahora = Date.now();
+    const registro = intentosPin.get(ipPin) || { n: 0, desde: ahora };
+    if (ahora - registro.desde > 60000) { registro.n = 0; registro.desde = ahora; }
+    registro.n++;
+    intentosPin.set(ipPin, registro);
+    if (registro.n > 5) {
+      return sendJson(res, 200, { ok: false, mensaje: 'Demasiados intentos. Espera un minuto.' });
+    }
+    const esperado = Buffer.from(String(process.env.PANEL_PIN));
+    const recibido = Buffer.from(pin);
+    const pinOk = esperado.length === recibido.length && crypto.timingSafeEqual(esperado, recibido);
+    if (!pinOk) {
+      return sendJson(res, 200, { ok: false, mensaje: 'PIN incorrecto.' });
+    }
+    registro.n = 0;
+    emitirCookiePanel(res);
+    return sendJson(res, 200, { ok: true });
+  }
+
+  // ---------- La Llave Visual ----------
+  if (urlPath === '/api/panel/llave/estado' && req.method === 'GET') {
+    return sendJson(res, 200, {
+      autenticado: panelAutenticado(req),
+      configurada: llavesVisuales.length > 0,
+    });
+  }
+
+  if (urlPath === '/api/panel/llave/crear' && req.method === 'POST') {
+    let body = {};
+    try { body = JSON.parse((await readBody(req)) || '{}'); } catch (e) {}
+    const codigo = String(body.codigo || '').trim().toUpperCase();
+    if (llavesVisuales.length > 0 && !(codigo && invitaciones.has(codigo))) {
+      return sendJson(res, 200, { ok: false, mensaje: 'Ya hay llaves registradas; pide una invitación al dueño.' });
+    }
+    let valido = false;
+    if (codigoLlave && llavesVisuales.length === 0 && codigo === codigoLlave) valido = true;
+    else if (codigo && invitaciones.has(codigo)) { valido = true; invitaciones.delete(codigo); }
+    if (!valido) return sendJson(res, 200, { ok: false, mensaje: 'Código incorrecto o ya usado.' });
+    const semilla = crypto.randomBytes(6).toString('hex');
+    llavesVisuales.push(semilla);
+    guardarLlaves();
+    if (llavesVisuales.length === 1) codigoLlave = null; // bootstrap cerrado
+    return sendJson(res, 200, { ok: true, avatar: svgAvatar(semilla) });
+  }
+
+  if (urlPath === '/api/panel/llave/iniciar' && req.method === 'POST') {
+    if (llavesVisuales.length === 0) return sendJson(res, 200, { ok: false, mensaje: 'No hay llaves registradas.' });
+    if (!llavePuedeIntentar(ipCliente(req) || '?')) {
+      return sendJson(res, 200, { ok: false, mensaje: 'Demasiados intentos. Espera un minuto.' });
+    }
+    const rondaId = crypto.randomBytes(8).toString('hex');
+    rondasLlave.set(rondaId, { restantes: 3, ts: Date.now(), ip: ipCliente(req) || '?' });
+    const celdas = grillaLlave();
+    celdasDeRonda.set(rondaId, celdas);
+    return sendJson(res, 200, { ok: true, rondaId, rondas: 3, celdas });
+  }
+
+  if (urlPath === '/api/panel/llave/elegir' && req.method === 'POST') {
+    let body = {};
+    try { body = JSON.parse((await readBody(req)) || '{}'); } catch (e) {}
+    const ronda = rondasLlave.get(body.rondaId);
+    if (!ronda) return sendJson(res, 200, { ok: false, reiniciar: true, mensaje: 'Ronda expirada. Empezamos de nuevo.' });
+    if (!llavePuedeIntentar(ipCliente(req) || '?')) {
+      rondasLlave.delete(body.rondaId);
+      return sendJson(res, 200, { ok: false, reiniciar: true, mensaje: 'Demasiados intentos. Espera un minuto.' });
+    }
+    ronda.ts = Date.now();
+    const guardadas = celdasDeRonda.get(body.rondaId);
+    if (!guardadas || typeof body.indice !== 'number' || !guardadas[body.indice]) {
+      rondasLlave.delete(body.rondaId);
+      return sendJson(res, 200, { ok: false, reiniciar: true, mensaje: 'Ronda inválida.' });
+    }
+    if (!guardadas[body.indice].real) {
+      rondasLlave.delete(body.rondaId);
+      return sendJson(res, 200, { ok: false, reiniciar: true, mensaje: 'Esa no era tu llave. Empezamos de nuevo.' });
+    }
+    ronda.restantes--;
+    if (ronda.restantes <= 0) {
+      rondasLlave.delete(body.rondaId);
+      emitirCookiePanel(res);
+      return sendJson(res, 200, { ok: true, desbloqueado: true });
+    }
+    const celdas = grillaLlave();
+    celdasDeRonda.set(body.rondaId, celdas);
+    return sendJson(res, 200, { ok: true, rondaId: body.rondaId, restantes: ronda.restantes, celdas });
   }
 
   if (urlPath === '/api/panel/estado' && req.method === 'GET') {
@@ -1390,12 +1594,14 @@ server.listen(PORT, HOST, () => {
   console.log(' POST /api/empresa-login {usuario, clave}');
   console.log(' PANEL:  http://' + HOST + ':' + PORT + '/panel/');
   console.log('==========================================================');
-  if (codigoInstalacion) {
+  if (codigoLlave) {
     console.log('');
-    console.log(' 🔐 PANEL SIN OPERADORES — Código de instalación (solo esta vez):');
-    console.log('    ' + codigoInstalacion);
-    console.log('    Úsalo en el panel para registrar la PRIMERA huella (la tuya, la del dueño).');
-    console.log('    Después, los demás operadores entran con invitaciones generadas desde el panel.');
+    console.log(' 🔑 PANEL SIN LLAVES — Código para crear la PRIMERA llave visual:');
+    console.log('    ' + codigoLlave);
+    console.log('    Úsalo en el panel para generar tu avatar. Las demás llaves, con invitaciones.');
+  }
+  if (codigoInstalacion) {
+    console.log(' (Alternativa huella — código de instalación: ' + codigoInstalacion + ')');
   }
 });
 

@@ -515,7 +515,7 @@ body {
 
 .pl-candado__caja input:focus { outline: 2px solid var(--azul); border-color: var(--azul); }
 
-#pl-candado-registro { display: flex; flex-direction: column; gap: 10px; }
+#pl-candado-registro, #pl-pin-caja { display: flex; flex-direction: column; gap: 10px; }
 
 .pl-candado__error {
   color: var(--rojo);
@@ -525,6 +525,82 @@ body {
 }
 
 .pl-btn--primary { padding: 11px 16px; font-size: 14px; }
+
+.pl-candado__caja--ancha { width: min(560px, 94vw); }
+
+/* La Llave Visual: rejilla de avatares */
+.pl-llave__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 4px 0 10px;
+}
+
+.pl-llave__celda {
+  appearance: none;
+  border: 2px solid var(--linea);
+  border-radius: 16px;
+  background: #fff;
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.pl-llave__celda svg { width: 100%; height: auto; display: block; border-radius: 10px; }
+
+.pl-llave__celda:hover {
+  transform: translateY(-3px);
+  border-color: var(--azul);
+  box-shadow: 0 10px 24px rgba(0, 94, 184, 0.25);
+}
+
+.pl-llave__celda--tocado { border-color: var(--azul); box-shadow: 0 0 0 3px rgba(0, 94, 184, 0.25); }
+
+.pl-llave__grid--exito .pl-llave__celda--tocado {
+  border-color: var(--verde);
+  box-shadow: 0 0 0 4px rgba(0, 135, 90, 0.3);
+  animation: pl-exito 0.6s ease;
+}
+
+@keyframes pl-exito {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.pl-llave__progreso {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.pl-llave__punto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--linea);
+}
+
+.pl-llave__punto--activo { background: var(--azul); box-shadow: 0 0 0 4px rgba(0, 94, 184, 0.18); }
+
+.pl-llave__punto--hecho { background: var(--verde); }
+
+.pl-llave__revelada {
+  background: #fff;
+  border: 2px solid var(--azul);
+  border-radius: 20px;
+  padding: 14px;
+  width: 170px;
+  margin: 0 auto;
+  box-shadow: 0 12px 30px rgba(0, 94, 184, 0.25);
+  animation: pl-entra 0.7s ease;
+}
+
+.pl-llave__revelada svg { width: 100%; height: auto; display: block; border-radius: 14px; }
+
+.pl-mini-link { font-size: 12px; padding: 5px 10px; }
+
+#pl-huella-caja { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
 
 @media (max-width: 1100px) {
   .pl-columnas, .pl-fila { grid-template-columns: 140px 1fr 1fr 1fr 135px; }
