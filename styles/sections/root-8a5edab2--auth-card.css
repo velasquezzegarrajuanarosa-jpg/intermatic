@@ -1,0 +1,107 @@
+﻿/* Gateway stage: heading, access card, and choice controls. */
+.pac-main {
+  position: absolute;
+  top: 111px;
+  left: calc(50% - 500px);
+  width: 1000px;
+}
+
+.pac-main__inner {
+  padding: 20px;
+  overflow: auto;
+}
+
+.pac-gateway {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
+
+.pac-auth-card {
+  position: relative;
+  width: 70%;
+  max-width: 340px;
+  height: 400px;
+  padding: 30px 20px 10px 30px;
+  background-color: var(--surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.pac-form {
+  margin: 0;
+}
+
+.pac-welcome {
+  padding: 5px;
+  color: var(--headline);
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.pac-symbol {
+  width: 59%;
+  height: 59%;
+  color: var(--accent-strong);
+}
+
+.pac-caption {
+  padding-top: 12px;
+  color: var(--ink-strong);
+  font-size: 16px;
+}
+
+.pac-choice {
+  position: absolute;
+  left: 5%;
+  display: block;
+  width: 90%;
+  height: 40%;
+  max-height: 40px;
+  margin-top: 20px;
+  padding: 7px;
+  border: 0;
+  border-radius: var(--radius-control);
+  background-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+  color: var(--white);
+  cursor: auto;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  outline: none;
+  text-align: center;
+  transform: rotateZ(0);
+  transition: all 0.1s var(--ease-control);
+  vertical-align: middle;
+}
+
+.pac-choice:hover {
+  background-color: var(--accent-strong);
+  color: var(--white);
+}
+
+.pac-choice-gap {
+  padding: 25px;
+}
+
+.pac-tail {
+  height: 100px;
+}
+
+@media screen and (max-width: 980px) {
+  .pac-main {
+    left: 0;
+    width: 100%;
+  }
+
+  .pac-main__inner {
+    padding: 0;
+  }
+}

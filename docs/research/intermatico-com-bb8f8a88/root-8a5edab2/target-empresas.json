@@ -1,0 +1,61 @@
+{
+  "url": "https://www.intermatico.com/Login/Index",
+  "title": "Banco del Pacifico - Iniciar sesión",
+  "bodyDisplay": "block",
+  "text": "Inicio Intermático del Banco del Pacífico Ingrese a Banco del Pacífico USUARIO ¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí. Estimado cliente, Intermático estará activo hasta el 23 de abril, para que pueda realizar sus transacciones es necesario contratar nuestro Cash Management ingresando a https://www.bp.fin.ec/cashmanagement en la opción Contratación digital o si desea comuníquese con su funcionario. Internet Explorer 11.0; Chrome 36.0.1; Firefox 31.0; | Resolucion óptima: 1280x1024 © Copyright 2026 Banco del Pacífico * V.14.0.0 POR SU SEGURIDAD Antes de ingresar sus datos en esta pantalla, verifique si la dirección en la barra superior es: https://www.intermatico.com ",
+  "forms": [
+    {
+      "id": "",
+      "name": "",
+      "action": "https://www.intermatico.com/Login/Index",
+      "method": "post",
+      "html": "<form action=\"/Login/Index\" method=\"post\" novalidate=\"novalidate\"><input name=\"__RequestVerificationToken\" type=\"hidden\" value=\"F4tLYCD_Xxn_9az1_JafTPf0msnPAWvPW02mp4pk-bc_FlkoAETGkco0rwY982Y8WuQlsGVlXwGQryxVNRf7aM98HhbmMwle8wcuWQ-yNkKGhgT5jc4q3Uh8w6rBOI8n0\">                        <div id=\"icon-login\">USUARIO</div>\n<input class=\"inputarea\" data-val=\"true\" data-val-length=\"Datos inválidos.\" data-val-length-max=\"16\" data-val-length-min=\"6\" data-val-regex=\"Datos inválidos.\" data-val-regex-pattern=\"^[ñA-Za-z0-9_]*[ñA-Za-z0-9][ñA-Za-z0-9_]*$\" data-val-required=\"Datos inválidos.\" id=\"user\" maxlength=\"16\" name=\"Usuario\" size=\"15\" style=\"width:115px;\" type=\"text\" value=\"\"><input data-val=\"true\" data-val-regex=\"El único carácter especial que se acepta es: _ (guión bajo). Los demás caracteres especiales no están permitidos.\" data-val-regex-pattern=\"^[a-zA-Z0-9._ ]*$\" id=\"Browser\" name=\"Browser\" type=\"hidden\" value=\"\"><input data-val=\"true\" data-val-regex=\"El único carácter especial que se acepta es: _ (guión bajo). Los demás caracteres especiales no están permitidos.\" data-val-regex-pattern=\"^[a-zA-Z0-9._ ]*$\" id=\"VersionBrowser\" name=\"VersionBrowser\" type=\"hidden\" value=\"\">                        <br class=\"br\">\n                        <br class=\"br\">\n                        <div class=\"navButtons\">\n                            <input type=\"submit\" id=\"btnIngresar\" class=\"button_main\" value=\"INGRESAR\">\n                        </div>\n                        <br class=\"br\">\n                        <div class=\"alerttext\">\n                            <span class=\"field-validation-valid\" data-valmsg-for=\"Usuario\" data-valmsg-replace=\"true\"></span>\n                        </div>\n</form>"
+    }
+  ],
+  "inputs": [
+    {
+      "type": "hidden",
+      "id": "",
+      "name": "__RequestVerificationToken",
+      "placeholder": "",
+      "value": "F4tLYCD_Xxn_9az1_JafTPf0msnPAWvPW02mp4pk-bc_FlkoAETGkco0rwY982Y8WuQlsGVlXwGQryxVNRf7aM98HhbmMwle8wcuWQ-yNkKGhgT5jc4q3Uh8w6rBOI8n0",
+      "visible": false
+    },
+    {
+      "type": "text",
+      "id": "user",
+      "name": "Usuario",
+      "placeholder": "",
+      "value": "",
+      "visible": true
+    },
+    {
+      "type": "hidden",
+      "id": "Browser",
+      "name": "Browser",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "type": "hidden",
+      "id": "VersionBrowser",
+      "name": "VersionBrowser",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "type": "submit",
+      "id": "btnIngresar",
+      "name": "",
+      "placeholder": "",
+      "value": "INGRESAR",
+      "visible": true
+    }
+  ],
+  "buttons": [],
+  "errors": [
+    "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+  ]
+}

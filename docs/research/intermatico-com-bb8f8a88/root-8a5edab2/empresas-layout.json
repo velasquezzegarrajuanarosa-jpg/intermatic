@@ -1,0 +1,876 @@
+{
+  "390": {
+    "#content": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 111,
+          "w": 390,
+          "h": 339.45
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "absolute",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Ingrese a Banco del Pacífico USUARIO ¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí. Estimado cliente, Intermático estará activo hasta el 23 de abr"
+      }
+    ],
+    "#contentwrapper": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 111,
+          "w": 390,
+          "h": 339.45
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Ingrese a Banco del Pacífico USUARIO ¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí. Estimado cliente, Intermático estará activo hasta el 23 de abr"
+      }
+    ],
+    "#leftcollogin": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 111,
+          "w": 390,
+          "h": 339.45
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px 30px 0px 0px",
+        "display": "block",
+        "position": "static",
+        "float": "left",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Ingrese a Banco del Pacífico USUARIO ¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí. Estimado cliente, Intermático estará activo hasta el 23 de abr"
+      }
+    ],
+    "#rightcollogin": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 450.45,
+          "w": 390,
+          "h": 0
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "left",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": ""
+      }
+    ],
+    "#loginmodulewrapper": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 131,
+          "w": 400,
+          "h": 135
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "bgImage": "-webkit-linear-gradient(top, rgb(255, 255, 255), rgb(238, 238, 238))",
+        "pad": "0px",
+        "margin": "20px -10px 20px 0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "3px",
+        "shadow": "none",
+        "text": "Ingrese a Banco del Pacífico USUARIO"
+      },
+      {
+        "rect": {
+          "x": 0,
+          "y": 309.89,
+          "w": 397.78,
+          "h": 120.56
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(226, 235, 241)",
+        "bgImage": "none",
+        "pad": "3.89062px",
+        "margin": "3.89062px -7.78125px 20px 0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "4px",
+        "shadow": "none",
+        "text": "Estimado cliente, Intermático estará activo hasta el 23 de abril, para que pueda realizar sus transacciones es necesario contratar nuestro Cash Management ingre"
+      }
+    ],
+    "#login-welcome-text": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "url(\"https://www.intermatico.com/Content/images/layout/login-text.png\")",
+        "pad": "0px",
+        "margin": "10px 0px 0px 60px",
+        "display": "none",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Ingrese a Banco del Pacífico"
+      }
+    ],
+    "#loginformwrapper": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 163,
+          "w": 390,
+          "h": 103
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "13px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "USUARIO"
+      }
+    ],
+    "#icon-login": [
+      {
+        "rect": {
+          "x": 63,
+          "y": 178,
+          "w": 114,
+          "h": 17
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "url(\"https://www.intermatico.com/Content/images/icons/icon-login.png\")",
+        "pad": "0px",
+        "margin": "2px 0px 0px 50px",
+        "display": "block",
+        "position": "static",
+        "float": "left",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "USUARIO"
+      }
+    ],
+    "#user": [
+      {
+        "rect": {
+          "x": 177,
+          "y": 176,
+          "w": 123,
+          "h": 23
+        },
+        "font": "13px Arial",
+        "color": "rgb(102, 102, 102)",
+        "bg": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "pad": "3px",
+        "margin": "0px",
+        "display": "inline-block",
+        "position": "static",
+        "float": "none",
+        "border": "1px solid rgb(229, 229, 229)",
+        "radius": "3px",
+        "shadow": "rgb(124, 176, 222) 0px 0px 0px 1px inset",
+        "text": ""
+      }
+    ],
+    "#btnIngresar": [
+      {
+        "rect": {
+          "x": 150.84,
+          "y": 215,
+          "w": 88.31,
+          "h": 22
+        },
+        "font": "500 12px / 4px Roboto, Helvetica, Arial",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgb(0, 121, 193)",
+        "bgImage": "none",
+        "pad": "5px 15px",
+        "margin": "0px",
+        "display": "inline-block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(255, 255, 255)",
+        "radius": "7px",
+        "shadow": "none",
+        "text": ""
+      }
+    ],
+    ".helpbox": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 271,
+          "w": 400,
+          "h": 35
+        },
+        "font": "11px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(226, 235, 241)",
+        "bgImage": "none",
+        "pad": "10px",
+        "margin": "-15px -10px 0px 0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí."
+      }
+    ],
+    "#banner": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 111,
+          "w": 390,
+          "h": 0
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": ""
+      }
+    ],
+    "#footerlogin": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 781,
+          "w": 390,
+          "h": 63
+        },
+        "font": "10px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(88, 88, 91)",
+        "bg": "rgb(241, 246, 251)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "fixed",
+        "float": "none",
+        "border": "0px none rgb(88, 88, 91)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Internet Explorer 11.0; Chrome 36.0.1; Firefox 31.0; | Resolucion óptima: 1280x1024 © Copyright 2026 Banco del Pacífico * V.14.0.0 POR SU SEGURIDAD Antes de ing"
+      }
+    ],
+    "#headerlogin": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 41,
+          "w": 390,
+          "h": 70
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "url(\"https://www.intermatico.com/Content/images/layout/logo.png\")",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Intermático del Banco del Pacífico"
+      }
+    ],
+    "#bodywrapper": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 8,
+          "w": 390,
+          "h": 103
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Inicio Intermático del Banco del Pacífico Ingrese a Banco del Pacífico USUARIO ¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí. Estimado cliente, In"
+      }
+    ],
+    "#background": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(3, 142, 221)",
+        "bgImage": "url(\"https://www.intermatico.com/Content/images/layout/bg-login/08.jpg\")",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "fixed",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Inicio Intermático del Banco del Pacífico Ingrese a Banco del Pacífico USUARIO ¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí. Estimado cliente, In"
+      }
+    ],
+    "#top": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 8,
+          "w": 390,
+          "h": 30
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Inicio"
+      }
+    ],
+    "#toplinks": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 8,
+          "w": 390,
+          "h": 24
+        },
+        "font": "100 13px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "8px 0px 0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(255, 255, 255)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Inicio"
+      }
+    ]
+  },
+  "1440": {
+    "#content": [
+      {
+        "rect": {
+          "x": 220,
+          "y": 111,
+          "w": 1000,
+          "h": 464.7
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "absolute",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Ingrese a Banco del Pacífico USUARIO ¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí. Estimado cliente, Intermático estará activo hasta el 23 de abr"
+      }
+    ],
+    "#contentwrapper": [
+      {
+        "rect": {
+          "x": 220,
+          "y": 111,
+          "w": 1000,
+          "h": 464.7
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "20px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Ingrese a Banco del Pacífico USUARIO ¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí. Estimado cliente, Intermático estará activo hasta el 23 de abr"
+      }
+    ],
+    "#leftcollogin": [
+      {
+        "rect": {
+          "x": 240,
+          "y": 131,
+          "w": 465,
+          "h": 424.7
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px 30px 0px 0px",
+        "display": "block",
+        "position": "static",
+        "float": "left",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Ingrese a Banco del Pacífico USUARIO ¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí. Estimado cliente, Intermático estará activo hasta el 23 de abr"
+      }
+    ],
+    "#rightcollogin": [
+      {
+        "rect": {
+          "x": 735,
+          "y": 131,
+          "w": 465,
+          "h": 400
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "left",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": ""
+      }
+    ],
+    "#loginmodulewrapper": [
+      {
+        "rect": {
+          "x": 240,
+          "y": 171,
+          "w": 400,
+          "h": 220
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(255, 255, 255)",
+        "bgImage": "-webkit-linear-gradient(top, rgb(255, 255, 255), rgb(238, 238, 238))",
+        "pad": "0px",
+        "margin": "40px 0px 0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "3px",
+        "shadow": "none",
+        "text": "Ingrese a Banco del Pacífico USUARIO"
+      },
+      {
+        "rect": {
+          "x": 240,
+          "y": 433.64,
+          "w": 399.28,
+          "h": 122.06
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(226, 235, 241)",
+        "bgImage": "none",
+        "pad": "4.64062px",
+        "margin": "4.64062px 0px 0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "4px",
+        "shadow": "none",
+        "text": "Estimado cliente, Intermático estará activo hasta el 23 de abril, para que pueda realizar sus transacciones es necesario contratar nuestro Cash Management ingre"
+      }
+    ],
+    "#login-welcome-text": [
+      {
+        "rect": {
+          "x": 300,
+          "y": 197,
+          "w": 280,
+          "h": 58
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "url(\"https://www.intermatico.com/Content/images/layout/login-text.png\")",
+        "pad": "0px",
+        "margin": "10px 0px 0px 60px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Ingrese a Banco del Pacífico"
+      }
+    ],
+    "#loginformwrapper": [
+      {
+        "rect": {
+          "x": 240,
+          "y": 271,
+          "w": 390,
+          "h": 103
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "13px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "USUARIO"
+      }
+    ],
+    "#icon-login": [
+      {
+        "rect": {
+          "x": 303,
+          "y": 286,
+          "w": 114,
+          "h": 17
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "url(\"https://www.intermatico.com/Content/images/icons/icon-login.png\")",
+        "pad": "0px",
+        "margin": "2px 0px 0px 50px",
+        "display": "block",
+        "position": "static",
+        "float": "left",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "USUARIO"
+      }
+    ],
+    "#user": [
+      {
+        "rect": {
+          "x": 417,
+          "y": 284,
+          "w": 123,
+          "h": 23
+        },
+        "font": "13px Arial",
+        "color": "rgb(102, 102, 102)",
+        "bg": "rgb(255, 255, 255)",
+        "bgImage": "none",
+        "pad": "3px",
+        "margin": "0px",
+        "display": "inline-block",
+        "position": "static",
+        "float": "none",
+        "border": "1px solid rgb(229, 229, 229)",
+        "radius": "3px",
+        "shadow": "rgb(124, 176, 222) 0px 0px 0px 1px inset",
+        "text": ""
+      }
+    ],
+    "#btnIngresar": [
+      {
+        "rect": {
+          "x": 390.84,
+          "y": 323,
+          "w": 88.31,
+          "h": 22
+        },
+        "font": "500 12px / 4px Roboto, Helvetica, Arial",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgb(0, 121, 193)",
+        "bgImage": "none",
+        "pad": "5px 15px",
+        "margin": "0px",
+        "display": "inline-block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(255, 255, 255)",
+        "radius": "7px",
+        "shadow": "none",
+        "text": ""
+      }
+    ],
+    ".helpbox": [
+      {
+        "rect": {
+          "x": 240,
+          "y": 394,
+          "w": 400,
+          "h": 35
+        },
+        "font": "11px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(226, 235, 241)",
+        "bgImage": "none",
+        "pad": "10px",
+        "margin": "3px 0px 0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí."
+      }
+    ],
+    "#banner": [
+      {
+        "rect": {
+          "x": 240,
+          "y": 131,
+          "w": 960,
+          "h": 0
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": ""
+      }
+    ],
+    "#footerlogin": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 937,
+          "w": 1440,
+          "h": 63
+        },
+        "font": "10px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(88, 88, 91)",
+        "bg": "rgb(241, 246, 251)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "fixed",
+        "float": "none",
+        "border": "0px none rgb(88, 88, 91)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Internet Explorer 11.0; Chrome 36.0.1; Firefox 31.0; | Resolucion óptima: 1280x1024 © Copyright 2026 Banco del Pacífico * V.14.0.0 POR SU SEGURIDAD Antes de ing"
+      }
+    ],
+    "#headerlogin": [
+      {
+        "rect": {
+          "x": 220,
+          "y": 41,
+          "w": 1000,
+          "h": 70
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "url(\"https://www.intermatico.com/Content/images/layout/logo.png\")",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Intermático del Banco del Pacífico"
+      }
+    ],
+    "#bodywrapper": [
+      {
+        "rect": {
+          "x": 220,
+          "y": 8,
+          "w": 1000,
+          "h": 103
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px 220px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Inicio Intermático del Banco del Pacífico Ingrese a Banco del Pacífico USUARIO ¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí. Estimado cliente, In"
+      }
+    ],
+    "#background": [
+      {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 1000
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgb(3, 142, 221)",
+        "bgImage": "url(\"https://www.intermatico.com/Content/images/layout/bg-login/03.jpg\")",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "fixed",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Inicio Intermático del Banco del Pacífico Ingrese a Banco del Pacífico USUARIO ¿Olvidó su contraseña? | ¿Es usuario nuevo? Regístrese aquí. Estimado cliente, In"
+      }
+    ],
+    "#top": [
+      {
+        "rect": {
+          "x": 220,
+          "y": 8,
+          "w": 1000,
+          "h": 30
+        },
+        "font": "12px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(51, 51, 51)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Inicio"
+      }
+    ],
+    "#toplinks": [
+      {
+        "rect": {
+          "x": 220,
+          "y": 8,
+          "w": 1000,
+          "h": 24
+        },
+        "font": "100 13px Roboto, Helvetica, Arial, sans-serif",
+        "color": "rgb(255, 255, 255)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "none",
+        "pad": "0px",
+        "margin": "8px 0px 0px",
+        "display": "block",
+        "position": "static",
+        "float": "none",
+        "border": "0px none rgb(255, 255, 255)",
+        "radius": "0px",
+        "shadow": "none",
+        "text": "Inicio"
+      }
+    ]
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "shipped": [
+    "index.html",
+    "personas/index.html",
+    "empresas/index.html",
+    "README.md",
+    "partials/root-8a5edab2--backdrop.html",
+    "partials/root-8a5edab2--masthead.html",
+    "partials/root-8a5edab2--auth-card.html",
+    "partials/root-8a5edab2--footer.html",
+    "styles/base.css",
+    "styles/personas.css",
+    "styles/tokens.css",
+    "styles/sections/empresas-card.css",
+    "styles/sections/root-8a5edab2--auth-card.css",
+    "styles/sections/root-8a5edab2--backdrop.css",
+    "styles/sections/root-8a5edab2--footer.css",
+    "styles/sections/root-8a5edab2--masthead.css",
+    "scripts/main.js",
+    "scripts/personas.js",
+    "scripts/empresas.js",
+    "scripts/sections/root-8a5edab2--auth-gate.js",
+    "scripts/sections/root-8a5edab2--backdrop.js"
+  ],
+  "hits": [],
+  "assets": [
+    "assets/fonts/pacifico-text-regular.woff2",
+    "assets/fonts/personas-inter-bold.woff2",
+    "assets/fonts/personas-inter-medium.woff2",
+    "assets/fonts/personas-inter-regular.woff2",
+    "assets/icons/pacifico.ico",
+    "assets/icons/personas-avatar.svg",
+    "assets/icons/personas-back.svg",
+    "assets/icons/personas-card.svg",
+    "assets/icons/personas-code-shield.svg",
+    "assets/icons/personas-device-lock.svg",
+    "assets/icons/personas-eye-off.svg",
+    "assets/icons/personas-eye.svg",
+    "assets/icons/personas-info.svg",
+    "assets/icons/personas-key.svg",
+    "assets/icons/personas-lock.svg",
+    "assets/icons/personas-phone.svg",
+    "assets/icons/personas-user.svg",
+    "assets/images/access-symbol.webp",
+    "assets/images/auth-scene-01.webp",
+    "assets/images/auth-scene-02.webp",
+    "assets/images/auth-scene-03.webp",
+    "assets/images/auth-scene-04.webp",
+    "assets/images/auth-scene-05.webp",
+    "assets/images/auth-scene-06.webp",
+    "assets/images/auth-scene-07.webp",
+    "assets/images/auth-scene-08.webp",
+    "assets/images/brand-wordmark-retina.webp",
+    "assets/images/brand-wordmark.webp",
+    "assets/images/empresas-intro.webp",
+    "assets/images/empresas-pass-label.webp",
+    "assets/images/empresas-user-label.webp",
+    "assets/images/personas-wordmark.webp"
+  ],
+  "badAssets": [],
+  "externalRefs": [
+    {
+      "file": "index.html",
+      "url": "https://www.intermatico.com/Usuario/SeguridadPrincipal"
+    },
+    {
+      "file": "index.html",
+      "url": "https://www.intermatico.com"
+    },
+    {
+      "file": "personas/index.html",
+      "url": "https://www.intermatico.com"
+    },
+    {
+      "file": "personas/index.html",
+      "url": "https://www.intermatico.com"
+    },
+    {
+      "file": "personas/index.html",
+      "url": "https://www.bancodelpacifico.com/que-necesitas/tutoriales/banca-virtual-intermatico/crear-usuario"
+    },
+    {
+      "file": "personas/index.html",
+      "url": "https://www.bancodelpacifico.com/que-necesitas/Tutoriales"
+    },
+    {
+      "file": "personas/index.html",
+      "url": "https://www.bancodelpacifico.com/que-necesitas/Tutoriales"
+    },
+    {
+      "file": "empresas/index.html",
+      "url": "https://www.intermatico.com/Usuario/RecuperarContrasena"
+    },
+    {
+      "file": "empresas/index.html",
+      "url": "https://www.intermatico.com/ebanking/seguridad/autoadhesion/datosUsuario.htm"
+    },
+    {
+      "file": "empresas/index.html",
+      "url": "https://www.bp.fin.ec/cashmanagement"
+    },
+    {
+      "file": "empresas/index.html",
+      "url": "https://www.bp.fin.ec/cashmanagement"
+    },
+    {
+      "file": "empresas/index.html",
+      "url": "https://www.intermatico.com/Usuario/SeguridadPrincipal"
+    },
+    {
+      "file": "empresas/index.html",
+      "url": "https://www.intermatico.com"
+    },
+    {
+      "file": "README.md",
+      "url": "https://www.intermatico.com/`,"
+    },
+    {
+      "file": "README.md",
+      "url": "http://127.0.0.1:8137/`."
+    },
+    {
+      "file": "partials/root-8a5edab2--footer.html",
+      "url": "https://www.intermatico.com/Usuario/SeguridadPrincipal"
+    },
+    {
+      "file": "partials/root-8a5edab2--footer.html",
+      "url": "https://www.intermatico.com"
+    }
+  ]
+}

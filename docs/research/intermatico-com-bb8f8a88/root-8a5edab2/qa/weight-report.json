@@ -1,0 +1,171 @@
+{
+  "outputOnDisk": {
+    "total": 1025079,
+    "byKind": {
+      "woff2": 107812,
+      "ico": 16958,
+      "svg": 8122,
+      "webp": 839192,
+      "html": 18375,
+      "md": 2499,
+      "js": 12730,
+      "css": 19391
+    },
+    "files": 53
+  },
+  "original": {
+    "totalTransfer": 422048,
+    "nav": {
+      "transfer": 3934,
+      "encoded": 3634,
+      "decoded": 8215
+    },
+    "resources": [
+      {
+        "name": "/Content/css/cssintermaticonaos?v=SOtSqxZ2YZYMUw0UB7uFXp14zcV9gpHY3K567NREgUY1",
+        "type": "link",
+        "transfer": 10375
+      },
+      {
+        "name": "/Content/impromptu/impromptucss?v=Kiab0-q5AicqpWBzC-UvM8nkLMawYYgAodVG7dhucbA1",
+        "type": "link",
+        "transfer": 1389
+      },
+      {
+        "name": "/bundles/jquery?v=XrScCT693DyOnAZpu4pIgv826ntWeUmBY7iOgMbP9B41",
+        "type": "script",
+        "transfer": 41180
+      },
+      {
+        "name": "/bundles/intermaticotools?v=wE5a92nCGRczWVTVhlmX-BwXHqeJhj4G11dXRfvZU0U1",
+        "type": "script",
+        "transfer": 5067
+      },
+      {
+        "name": "/bundles/impromptujs?v=i5co50cQs0zMrKnmyk_Pj6ftXbqd7fTwH7uz2Xq6Ooo1",
+        "type": "script",
+        "transfer": 8114
+      },
+      {
+        "name": "/Content/css/InicioStyles.min.css",
+        "type": "link",
+        "transfer": 1236
+      },
+      {
+        "name": "/Content/images/Trazado%20149@2x.png",
+        "type": "img",
+        "transfer": 7458
+      },
+      {
+        "name": "/Scripts/configuraciones-generales.js",
+        "type": "script",
+        "transfer": 986
+      },
+      {
+        "name": "https://ssl.google-analytics.com/ga.js",
+        "type": "script",
+        "transfer": 0
+      },
+      {
+        "name": "https://seguridad.evidenciainformatica.com.ec/sendInfo/9553",
+        "type": "script",
+        "transfer": 0
+      },
+      {
+        "name": "/Content/images/layout/logo.png",
+        "type": "css",
+        "transfer": 4605
+      },
+      {
+        "name": "/Content/fonts/Roboto-Regular.ttf",
+        "type": "css",
+        "transfer": 145648
+      },
+      {
+        "name": "https://ssl.google-analytics.com/r/__utm.gif?utmwv=5.7.2&utms=1&utmn=1996256995&utmhn=www.intermatico.com&utmcs=UTF-8&utmsr=1440x900&utmvp=1440x900&utmsc=24-bit&utmul=es-419&utmje=0&utmfl=-&utmdt=Banco%20del%20Pacifico%20-%20Intermatico&utmhid=814936880&utmr=-&utmp=%2F&utmht=1793827192992&utmac=UA-18555495-3&utmcc=__utma%3D4403307.1581351414.1793827193.1793827193.1793827193.1%3B%2B__utmz%3D4403307.1793827193.1.1.utmcsr%3D(direct)%7Cutmccn%3D(direct)%7Cutmcmd%3D(none)%3B&utmjid=259134207&utmredir=1&utmu=qAAAAAAAAAAAAAAAAAAAAAAE~",
+        "type": "img",
+        "transfer": 0
+      },
+      {
+        "name": "/Content/images/layout/bg-login/05.jpg",
+        "type": "css",
+        "transfer": 192056
+      }
+    ]
+  },
+  "clone": {
+    "totalTransfer": 221047,
+    "nav": {
+      "transfer": 3492,
+      "encoded": 3192,
+      "decoded": 3192
+    },
+    "resources": [
+      {
+        "name": "/styles/tokens.css",
+        "type": "link",
+        "transfer": 1197
+      },
+      {
+        "name": "/styles/sections/root-8a5edab2--backdrop.css",
+        "type": "link",
+        "transfer": 669
+      },
+      {
+        "name": "/styles/base.css",
+        "type": "link",
+        "transfer": 1043
+      },
+      {
+        "name": "/styles/sections/root-8a5edab2--masthead.css",
+        "type": "link",
+        "transfer": 1488
+      },
+      {
+        "name": "/styles/sections/root-8a5edab2--auth-card.css",
+        "type": "link",
+        "transfer": 2061
+      },
+      {
+        "name": "/styles/sections/root-8a5edab2--footer.css",
+        "type": "link",
+        "transfer": 1118
+      },
+      {
+        "name": "/assets/images/access-symbol.webp",
+        "type": "img",
+        "transfer": 2326
+      },
+      {
+        "name": "/scripts/sections/root-8a5edab2--backdrop.js",
+        "type": "script",
+        "transfer": 1413
+      },
+      {
+        "name": "/scripts/sections/root-8a5edab2--auth-gate.js",
+        "type": "script",
+        "transfer": 834
+      },
+      {
+        "name": "/scripts/main.js",
+        "type": "script",
+        "transfer": 688
+      },
+      {
+        "name": "/assets/images/auth-scene-05.webp",
+        "type": "css",
+        "transfer": 147504
+      },
+      {
+        "name": "/assets/images/brand-wordmark.webp",
+        "type": "css",
+        "transfer": 2274
+      },
+      {
+        "name": "/assets/fonts/pacifico-text-regular.woff2",
+        "type": "css",
+        "transfer": 54940
+      }
+    ]
+  }
+}

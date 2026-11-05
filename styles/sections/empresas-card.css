@@ -1,0 +1,209 @@
+/* Legacy business login card, composed on the shared scenic shell. */
+.emp-main {
+  position: absolute;
+  top: 111px;
+  left: calc(50% - 500px);
+  width: 1000px;
+  overflow: hidden;
+}
+
+.emp-inner {
+  padding: 20px;
+}
+
+.emp-login {
+  position: relative;
+  width: 400px;
+  min-height: 220px;
+  margin-top: 40px;
+  border-radius: 3px;
+  background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(238, 238, 238));
+}
+
+.emp-intro {
+  display: block;
+  width: 280px;
+  height: 58px;
+  margin: 10px 0 0 60px;
+}
+
+.emp-form-wrap {
+  padding: 13px;
+}
+
+.emp-label {
+  float: left;
+  width: 114px;
+  height: 17px;
+  margin: 2px 0 0 50px;
+  background-image: url("../../assets/images/empresas-user-label.webp");
+  background-repeat: no-repeat;
+  text-indent: -10000px;
+}
+
+.emp-label--pass {
+  background-image: url("../../assets/images/empresas-pass-label.webp");
+}
+
+.emp-back {
+  display: block;
+  margin: 2px 0 0 50px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgb(0, 121, 192);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.emp-input {
+  display: inline-block;
+  width: 123px;
+  height: 23px;
+  padding: 3px;
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  background-color: var(--surface);
+  box-shadow: inset 0 0 0 1px rgb(124, 176, 222);
+  color: rgb(102, 102, 102);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  outline: none;
+}
+
+.emp-nav {
+  text-align: center;
+}
+
+.emp-submit {
+  display: inline-block;
+  width: 88.31px;
+  height: 22px;
+  padding: 5px 15px;
+  border: 0;
+  border-radius: 7px;
+  background-color: var(--accent);
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.emp-submit:hover {
+  background-color: rgb(7, 100, 155);
+  color: rgb(225, 243, 251);
+}
+
+.emp-help {
+  width: 400px;
+  margin-top: 3px;
+  padding: 10px;
+  background-color: rgb(226, 235, 241);
+  font-size: 11px;
+}
+
+.emp-help a {
+  color: var(--link);
+}
+
+.emp-notice {
+  width: 399.28px;
+  margin-top: 4.64px;
+  padding: 4.64px;
+  border-radius: 4px;
+  background-color: rgb(226, 235, 241);
+  font-size: 14px;
+}
+
+.emp-notice p {
+  margin: 0;
+  line-height: 1.25;
+}
+
+.emp-notice strong {
+  color: rgb(255, 0, 0);
+  font-weight: 700;
+}
+
+.emp-note {
+  margin: 10px 0 0;
+  color: rgb(0, 94, 184);
+  font-size: 12px;
+}
+
+.emp-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: rgb(255, 255, 255);
+}
+
+.emp-spinner {
+  width: 70px;
+  height: 70px;
+  border: 7px solid rgba(255, 255, 255, 0.35);
+  border-top-color: rgb(59, 154, 225);
+  border-right-color: rgb(59, 154, 225);
+  border-radius: 50%;
+  animation: emp-spin 1s linear infinite;
+}
+
+.emp-loading p {
+  margin: 16px 0 0;
+  font-family: var(--font-ui);
+  font-size: 20px;
+  line-height: 24px;
+}
+
+@keyframes emp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.emp-clear {
+  clear: left;
+}
+
+@media screen and (max-width: 980px) {
+  .emp-main {
+    left: 0;
+    width: 100%;
+  }
+
+  .emp-inner {
+    padding: 0;
+  }
+
+  .emp-login {
+    min-height: 0;
+    margin: 20px -10px 20px 0;
+  }
+
+  .emp-intro {
+    display: none;
+  }
+
+  .emp-help {
+    margin: -15px -10px 0 0;
+  }
+
+  .emp-notice {
+    width: 397.78px;
+    margin-top: 3.89px;
+    margin-right: -7.78px;
+    margin-bottom: 20px;
+    padding: 3.89px;
+  }
+}

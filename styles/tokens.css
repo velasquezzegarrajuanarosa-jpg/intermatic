@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/pacifico-text-regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+
+:root {
+  --surface: rgb(255, 255, 255);
+  --ink: rgb(51, 51, 51);
+  --ink-strong: rgb(0, 0, 0);
+  --headline: rgb(0, 42, 102);
+  --accent: rgb(0, 121, 193);
+  --accent-strong: rgb(0, 94, 184);
+  --link: rgb(0, 121, 192);
+  --sky: rgb(3, 142, 221);
+  --footer-surface: rgb(241, 246, 251);
+  --footer-ink: rgb(88, 88, 91);
+  --footer-rule: rgb(161, 199, 218);
+  --hairline: rgb(225, 225, 225);
+  --white: rgb(255, 255, 255);
+  --shadow-card: 0 1px 5px #0000004d;
+  --radius-card: 6px;
+  --radius-control: 6px;
+  --shell-width: 1000px;
+  --card-width: 340px;
+  --font-ui: Roboto, Helvetica, Arial, sans-serif;
+  --font-control: Arial, Helvetica, sans-serif;
+  --ease-control: ease-out;
+  /* Layout switches to the fluid shell at 980px. */
+}

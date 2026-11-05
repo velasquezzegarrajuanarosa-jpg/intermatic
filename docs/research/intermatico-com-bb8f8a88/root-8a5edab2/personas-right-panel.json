@@ -1,0 +1,416 @@
+[
+  {
+    "tag": "div",
+    "text": "Consejos",
+    "rect": {
+      "x": 930.58,
+      "y": 268.97,
+      "w": 472,
+      "h": 15.02
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "0px",
+    "padding": "0px",
+    "display": "flex",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "p",
+    "text": "Consejos",
+    "rect": {
+      "x": 930.58,
+      "y": 268.97,
+      "w": 65.59,
+      "h": 15.02
+    },
+    "font": "13.008px / 15.008px Roboto, sans-serif",
+    "color": "rgb(99, 109, 119)",
+    "margin": "0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "15.008px",
+    "textAlign": "left",
+    "src": null
+  },
+  {
+    "tag": "div",
+    "text": "Por tu seguridad:",
+    "rect": {
+      "x": 930.58,
+      "y": 283.98,
+      "w": 472,
+      "h": 20
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "0px",
+    "padding": "0px",
+    "display": "flex",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "p",
+    "text": "Por tu seguridad:",
+    "rect": {
+      "x": 930.58,
+      "y": 283.98,
+      "w": 142.44,
+      "h": 20
+    },
+    "font": "17.008px / 20px Inter-bold",
+    "color": "rgb(25, 28, 30)",
+    "margin": "0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "20px",
+    "textAlign": "left",
+    "src": null
+  },
+  {
+    "tag": "div",
+    "text": "Banco del Pacífico S.A. no solicita claves, usuarios, números de tarjetas o cuenta por ningún medio.",
+    "rect": {
+      "x": 938.58,
+      "y": 347.98,
+      "w": 456,
+      "h": 36
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "24px 0px 0px",
+    "padding": "0px",
+    "display": "flex",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "img",
+    "text": "",
+    "rect": {
+      "x": 938.58,
+      "y": 347.98,
+      "w": 24,
+      "h": 36
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "0px 16px 0px 0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": "https://www.intermatico.com/ebanking/images/Lumina/disabled/lock.svg"
+  },
+  {
+    "tag": "p",
+    "text": "Banco del Pacífico S.A. no solicita claves, usuarios, números de tarjetas o cuenta por ningún medio.",
+    "rect": {
+      "x": 978.58,
+      "y": 347.98,
+      "w": 408,
+      "h": 36
+    },
+    "font": "15.008px / 18px Inter-regular",
+    "color": "rgb(99, 109, 119)",
+    "margin": "0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "18px",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "div",
+    "text": "No compartas tus claves, recuerda que son de uso personal e intransferible.",
+    "rect": {
+      "x": 938.58,
+      "y": 407.98,
+      "w": 456,
+      "h": 36
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "24px 0px 0px",
+    "padding": "0px",
+    "display": "flex",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "img",
+    "text": "",
+    "rect": {
+      "x": 938.58,
+      "y": 407.98,
+      "w": 24,
+      "h": 36
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "0px 16px 0px 0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": "https://www.intermatico.com/ebanking/images/Lumina/disabled/key.svg"
+  },
+  {
+    "tag": "p",
+    "text": "No compartas tus claves, recuerda que son de uso personal e intransferible.",
+    "rect": {
+      "x": 978.58,
+      "y": 407.98,
+      "w": 408,
+      "h": 36
+    },
+    "font": "15.008px / 18px Inter-regular",
+    "color": "rgb(99, 109, 119)",
+    "margin": "0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "18px",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "div",
+    "text": "Para acceder a la Banca Virtual, asegúrese de teclear en tu navegador la dirección https://www.intermatico.com",
+    "rect": {
+      "x": 938.58,
+      "y": 467.98,
+      "w": 456,
+      "h": 36
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "24px 0px 0px",
+    "padding": "0px",
+    "display": "flex",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "img",
+    "text": "",
+    "rect": {
+      "x": 938.58,
+      "y": 467.98,
+      "w": 24,
+      "h": 36
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "0px 16px 0px 0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": "https://www.intermatico.com/ebanking/images/Lumina/disabled/exclamation_circle.svg"
+  },
+  {
+    "tag": "p",
+    "text": "Para acceder a la Banca Virtual, asegúrese de teclear en tu navegador la dirección https://www.intermatico.com",
+    "rect": {
+      "x": 978.58,
+      "y": 467.98,
+      "w": 408,
+      "h": 36
+    },
+    "font": "15.008px / 18px Inter-regular",
+    "color": "rgb(99, 109, 119)",
+    "margin": "0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "18px",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "div",
+    "text": "En caso recibir llamadas, mensajes texto o correos sospechosos contáctate inmediatamente al 3731500 opción 9.",
+    "rect": {
+      "x": 938.58,
+      "y": 527.98,
+      "w": 456,
+      "h": 54
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "24px 0px 0px",
+    "padding": "0px",
+    "display": "flex",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "img",
+    "text": "",
+    "rect": {
+      "x": 938.58,
+      "y": 527.98,
+      "w": 24,
+      "h": 54
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "0px 16px 0px 0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": "https://www.intermatico.com/ebanking/images/Lumina/disabled/phone.svg"
+  },
+  {
+    "tag": "p",
+    "text": "En caso recibir llamadas, mensajes texto o correos sospechosos contáctate inmediatamente al 3731500 opción 9.",
+    "rect": {
+      "x": 978.58,
+      "y": 527.98,
+      "w": 408,
+      "h": 54
+    },
+    "font": "15.008px / 18px Inter-regular",
+    "color": "rgb(99, 109, 119)",
+    "margin": "0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "18px",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "div",
+    "text": "¿Necesitas ayuda?",
+    "rect": {
+      "x": 930.58,
+      "y": 625.98,
+      "w": 472,
+      "h": 20
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "28px 0px 0px",
+    "padding": "0px",
+    "display": "flex",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "p",
+    "text": "¿Necesitas ayuda?",
+    "rect": {
+      "x": 930.58,
+      "y": 625.98,
+      "w": 156.8,
+      "h": 20
+    },
+    "font": "17.008px / 20px Inter-bold",
+    "color": "rgb(25, 28, 30)",
+    "margin": "0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "20px",
+    "textAlign": "left",
+    "src": null
+  },
+  {
+    "tag": "div",
+    "text": "• ¿Cómo creo mi usuario?",
+    "rect": {
+      "x": 942.58,
+      "y": 669.98,
+      "w": 460,
+      "h": 15.02
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "24px 0px 0px 12px",
+    "padding": "0px",
+    "display": "flex",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "p",
+    "text": "• ¿Cómo creo mi usuario?",
+    "rect": {
+      "x": 942.58,
+      "y": 669.98,
+      "w": 157.89,
+      "h": 15.02
+    },
+    "font": "13.008px / 15.008px Inter-regular",
+    "color": "rgb(99, 109, 119)",
+    "margin": "0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "15.008px",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "div",
+    "text": "• ¿Cómo desbloqueo mi usuario?",
+    "rect": {
+      "x": 942.58,
+      "y": 693,
+      "w": 460,
+      "h": 15.02
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "8px 0px 0px 12px",
+    "padding": "0px",
+    "display": "flex",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "p",
+    "text": "• ¿Cómo desbloqueo mi usuario?",
+    "rect": {
+      "x": 942.58,
+      "y": 693,
+      "w": 202.84,
+      "h": 15.02
+    },
+    "font": "13.008px / 15.008px Inter-regular",
+    "color": "rgb(99, 109, 119)",
+    "margin": "0px",
+    "padding": "0px",
+    "display": "block",
+    "lineHeight": "15.008px",
+    "textAlign": "start",
+    "src": null
+  },
+  {
+    "tag": "div",
+    "text": "• ¿Cómo recupero mi contraseña?",
+    "rect": {
+      "x": 942.58,
+      "y": 716.02,
+      "w": 460,
+      "h": 15.02
+    },
+    "font": "11px Roboto, sans-serif",
+    "color": "rgb(51, 51, 51)",
+    "margin": "8px 0px 0px 12px",
+    "padding": "0px",
+    "display": "flex",
+    "lineHeight": "normal",
+    "textAlign": "start",
+    "src": null
+  }
+]

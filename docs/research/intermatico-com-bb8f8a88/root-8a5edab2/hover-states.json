@@ -1,0 +1,40 @@
+{
+  "button": {
+    "before": {
+      "backgroundColor": "rgb(0, 121, 193)",
+      "color": "rgb(255, 255, 255)",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "boxShadow": "rgb(225, 225, 225) 0px 0px 0px 1px inset",
+      "borderBottomWidth": "0px",
+      "transition": "0.1s ease-out"
+    },
+    "after": {
+      "backgroundColor": "rgb(0, 94, 184)",
+      "color": "rgb(255, 255, 255)",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "boxShadow": "rgb(225, 225, 225) 0px 0px 0px 1px inset",
+      "borderBottomWidth": "0px",
+      "transition": "0.1s ease-out"
+    }
+  },
+  "navLink": {
+    "before": {
+      "color": "rgb(255, 255, 255)",
+      "textDecorationLine": "none"
+    },
+    "after": {
+      "color": "rgb(255, 255, 255)",
+      "textDecorationLine": "underline"
+    }
+  },
+  "footerLink": {
+    "before": {
+      "color": "rgb(0, 121, 192)",
+      "textDecorationLine": "none"
+    },
+    "after": {
+      "color": "rgb(0, 121, 192)",
+      "textDecorationLine": "underline"
+    }
+  }
+}

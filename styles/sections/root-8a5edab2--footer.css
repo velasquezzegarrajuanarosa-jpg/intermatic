@@ -1,0 +1,53 @@
+/* Footer: fixed legal strip with compatibility and security notes. */
+.pac-footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 63px;
+  background-color: var(--footer-surface);
+  color: var(--footer-ink);
+  font-size: 10px;
+}
+
+.pac-footer__rule {
+  height: 2px;
+  background-color: var(--footer-rule);
+}
+
+.pac-footer__inner {
+  width: 1000px;
+  margin: 10px auto 0;
+}
+
+.pac-footer__compat {
+  float: right;
+  padding: 1px 20px 0 0;
+  font-size: 9px;
+  text-align: right;
+}
+
+.pac-footer__spacer {
+  float: right;
+  width: 84px;
+  padding: 1px 20px 0;
+}
+
+.pac-footer__security {
+  padding: 1px 0 0 20px;
+}
+
+.pac-footer__link {
+  color: var(--link);
+}
+
+.pac-footer .pac-clear {
+  clear: left;
+}
+
+@media screen and (max-width: 980px) {
+  .pac-footer__compat {
+    display: none;
+  }
+}

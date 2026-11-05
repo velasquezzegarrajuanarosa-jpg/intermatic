@@ -1,0 +1,338 @@
+{
+  "390": {
+    "viewport": {
+      "w": 390,
+      "h": 844
+    },
+    "original": {
+      "button": {
+        "before": {
+          "backgroundColor": "rgb(0, 121, 193)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "rgb(225, 225, 225) 0px 0px 0px 1px inset",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "transitionProperty": "all",
+          "transitionDuration": "0.1s",
+          "transitionTimingFunction": "ease-out",
+          "cursor": "auto",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgb(0, 94, 184)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "rgb(225, 225, 225) 0px 0px 0px 1px inset",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "transitionProperty": "all",
+          "transitionDuration": "0.1s",
+          "transitionTimingFunction": "ease-out",
+          "cursor": "auto",
+          "outlineStyle": "none"
+        }
+      },
+      "nav": {
+        "before": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "underline",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        }
+      },
+      "footer": {
+        "before": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 121, 192)",
+          "textDecorationLine": "none",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 121, 192)",
+          "textDecorationLine": "underline",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        }
+      },
+      "errors": []
+    },
+    "clone": {
+      "button": {
+        "before": {
+          "backgroundColor": "rgb(0, 121, 193)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "rgb(225, 225, 225) 0px 0px 0px 1px inset",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "transitionProperty": "all",
+          "transitionDuration": "0.1s",
+          "transitionTimingFunction": "ease-out",
+          "cursor": "auto",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgb(0, 94, 184)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "rgb(225, 225, 225) 0px 0px 0px 1px inset",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "transitionProperty": "all",
+          "transitionDuration": "0.1s",
+          "transitionTimingFunction": "ease-out",
+          "cursor": "auto",
+          "outlineStyle": "none"
+        }
+      },
+      "nav": {
+        "before": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "underline",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        }
+      },
+      "footer": {
+        "before": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 121, 192)",
+          "textDecorationLine": "none",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 121, 192)",
+          "textDecorationLine": "underline",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        }
+      },
+      "errors": []
+    }
+  },
+  "1440": {
+    "viewport": {
+      "w": 1440,
+      "h": 900
+    },
+    "original": {
+      "button": {
+        "before": {
+          "backgroundColor": "rgb(0, 121, 193)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "rgb(225, 225, 225) 0px 0px 0px 1px inset",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "transitionProperty": "all",
+          "transitionDuration": "0.1s",
+          "transitionTimingFunction": "ease-out",
+          "cursor": "auto",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgb(0, 94, 184)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "rgb(225, 225, 225) 0px 0px 0px 1px inset",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "transitionProperty": "all",
+          "transitionDuration": "0.1s",
+          "transitionTimingFunction": "ease-out",
+          "cursor": "auto",
+          "outlineStyle": "none"
+        }
+      },
+      "nav": {
+        "before": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "underline",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        }
+      },
+      "footer": {
+        "before": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 121, 192)",
+          "textDecorationLine": "none",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 121, 192)",
+          "textDecorationLine": "underline",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        }
+      },
+      "errors": []
+    },
+    "clone": {
+      "button": {
+        "before": {
+          "backgroundColor": "rgb(0, 121, 193)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "rgb(225, 225, 225) 0px 0px 0px 1px inset",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "transitionProperty": "all",
+          "transitionDuration": "0.1s",
+          "transitionTimingFunction": "ease-out",
+          "cursor": "auto",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgb(0, 94, 184)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "rgb(225, 225, 225) 0px 0px 0px 1px inset",
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "transitionProperty": "all",
+          "transitionDuration": "0.1s",
+          "transitionTimingFunction": "ease-out",
+          "cursor": "auto",
+          "outlineStyle": "none"
+        }
+      },
+      "nav": {
+        "before": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "none",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(255, 255, 255)",
+          "textDecorationLine": "underline",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        }
+      },
+      "footer": {
+        "before": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 121, 192)",
+          "textDecorationLine": "none",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        },
+        "after": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 121, 192)",
+          "textDecorationLine": "underline",
+          "boxShadow": "none",
+          "transform": "none",
+          "transitionProperty": "all",
+          "transitionDuration": "0s",
+          "transitionTimingFunction": "ease",
+          "cursor": "pointer",
+          "outlineStyle": "none"
+        }
+      },
+      "errors": []
+    }
+  }
+}

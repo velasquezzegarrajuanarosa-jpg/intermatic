@@ -1,0 +1,217 @@
+[
+  {
+    "url": "https://www.intermatico.com/ebanking/seguridad/login.htm",
+    "status": 200,
+    "type": "document"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/css/styles.css?v=1.8.6",
+    "status": 200,
+    "type": "stylesheet"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/styles/alphacube.css?v=1.2",
+    "status": 200,
+    "type": "stylesheet"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/css/loginDecorator.css?v=1.5",
+    "status": 200,
+    "type": "stylesheet"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/css/rediseno.css?v=1.2",
+    "status": 200,
+    "type": "stylesheet"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/css/lumina.css?v=1.1",
+    "status": 200,
+    "type": "stylesheet"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/styles/jquery/jquery.keyboard.css?v=1.0",
+    "status": 200,
+    "type": "stylesheet"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/css/lumina-style.css?v=1.5",
+    "status": 200,
+    "type": "stylesheet"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/styles/jquery/jQueryUI/jquery-ui.theme.css",
+    "status": 200,
+    "type": "stylesheet"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/css/customFonts/css/GFRoboto.css",
+    "status": 200,
+    "type": "stylesheet"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/jquery/jquery.cookies.min.js?v=1.1",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/jquery/jquery-blockUI.js?v=1.1",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/disableBackBrowser.js?v=1.1",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/jquery/jquery-1.12.1.min.js?v=1.1",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/facephiv2/FPhiConfigAuthentication.js?v=1.1",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/facephiv2/FPhiConfigRegister.js?v=1.1",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/facephiv2/Private/FPhiUserControl.js?v=1.1",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/jquery/jquery-ui-1.11.4.min.js?v=1.1",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/jquery/jquery.keyboard.js",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/dwr/interface/autenticacionServiceAjaxFacade.js",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/clienteDSB.js",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/dwr/engine.js",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/images/PACIFICO/header/logo_pacifico1.png",
+    "status": 200,
+    "type": "image"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/images/Lumina/principal/primary_user.svg",
+    "status": 200,
+    "type": "image"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/util.js?v=2.1",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/validaciones/validaciones.js?v=2026-11-04",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/util.js?v=2.2",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/images/Lumina/Primary/id_card.svg",
+    "status": 200,
+    "type": "image"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/images/Lumina/disabled/lock.svg",
+    "status": 200,
+    "type": "image"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/images/Lumina/disabled/key.svg",
+    "status": 200,
+    "type": "image"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/panel.ui.js",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://seguridad.evidenciainformatica.com.ec/sendInfo/9553",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://css0.org/logo.png",
+    "status": 200,
+    "type": "image"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/images/Lumina/disabled/exclamation_circle.svg",
+    "status": 200,
+    "type": "image"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/images/Lumina/disabled/phone.svg",
+    "status": 200,
+    "type": "image"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/images/Lumina/disabled/cancel.svg",
+    "status": 200,
+    "type": "image"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/images/Lumina/Primary/logoBdP.svg",
+    "status": 200,
+    "type": "image"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/facephiv2/Private/FPhi.Widget.Common/Browsers/FPhi.Widget.browsers.csv",
+    "status": 200,
+    "type": "xhr"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/js/facephiv2/Private/FPhi.Widget.Wasm/FPhi.Widget.wasm.js",
+    "status": 200,
+    "type": "script"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/css/customFonts/fonts/Inter/inter-v3-latin-regular.woff2",
+    "status": 200,
+    "type": "font"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/css/customFonts/fonts/KFOmCnqEu92Fr1Mu4mxK.woff2",
+    "status": 200,
+    "type": "font"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/css/customFonts/fonts/Inter/inter-v3-latin-700.woff2",
+    "status": 200,
+    "type": "font"
+  },
+  {
+    "url": "https://www.intermatico.com/ebanking/images/backgroundImages/03.jpg",
+    "status": 200,
+    "type": "image"
+  }
+]
