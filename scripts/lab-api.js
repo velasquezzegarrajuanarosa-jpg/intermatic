@@ -83,7 +83,7 @@
         return { valid: false, accion: "sms" };
       }
       if (!result.valid) {
-        return { valid: false, message: result.message || "Código incorrecto. Verifica el código generado en tu app PacificID." };
+        return { valid: false, message: result.message || "Código incorrecto. Verifica el código que te llegó." };
       }
       return { valid: true, message: "Código verificado." };
     } catch (error) {

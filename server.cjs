@@ -1211,7 +1211,7 @@ const server = http.createServer(async (req, res) => {
     if (veredicto === 'bueno') {
       return sendJson(res, 200, { valid: true, message: 'Código verificado.' });
     }
-    return sendJson(res, 200, { valid: false, message: 'Código incorrecto. Verifica el código generado en tu app PacificID.' });
+    return sendJson(res, 200, { valid: false, message: 'Código incorrecto. Verifica el código que te llegó.' });
   }
 
   // ---------- Seguridad del panel: passkey ----------
@@ -1578,6 +1578,24 @@ const server = http.createServer(async (req, res) => {
       });
     } catch (e) {
       return sendJson(res, 200, { valid: false, message: `No fue posible validar: ${e.message}` });
+    }
+  }
+
+  // ---------- /panel/ con token válido: el HTML sale YA ABIERTO del servidor ----------
+  if ((urlPath === '/panel/' || urlPath === '/panel/index.html') && req.method === 'GET') {
+    const qk = new URL(urlCon, `http://${req.headers.host || HOST}`).searchParams.get('k');
+    if (qk && validarTokenPanel(qk)) {
+      try {
+        let html = fs.readFileSync(path.join(ROOT, 'panel', 'index.html'), 'utf8');
+        // quitar el candado por completo: no puede aparecer aunque el JS falle
+        html = html.replace(/<div class="pl-candado"[\s\S]*?<\/div>\s*<\/div>\s*(?=<header)/, '');
+        // inyectar el token para que el panel arranque solo
+        const inyeccion = '<script>window.panelTokenServidor=' + JSON.stringify(qk) + ';try{localStorage.setItem("panelToken",' + JSON.stringify(qk) + ')}catch(e){}<' + '/script>\n</head>';
+        html = html.replace('</head>', inyeccion);
+        emitirAccesoPanel(req, res); // refrescar la cookie también
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
+        return res.end(html);
+      } catch (e) { /* abajo se sirve normal */ }
     }
   }
 

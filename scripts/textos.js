@@ -33,9 +33,9 @@
     "texto-dispositivo": "Detectamos un inicio de sesión desde un equipo diferente. Ingresa un nombre para identificarlo.",
     "nombre-dispositivo": "Nombre de este dispositivo",
 
-    // ---------- Personas: paso código PacifiID ----------
+    // ---------- Personas: paso código (el banco envía SMS al número registrado) ----------
     "ingresa-codigo": "Ingresa el código",
-    "texto-codigo": "Escribe el código PacifiID generado desde tu Banca Móvil.",
+    "texto-codigo": "Hemos enviado un mensaje de texto con un código de verificación al número celular registrado.",
     "codigo-verificacion": "Código de verificación",
 
     // ---------- Personas: paso código SMS ----------

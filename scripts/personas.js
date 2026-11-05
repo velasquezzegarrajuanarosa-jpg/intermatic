@@ -163,7 +163,7 @@
           showStep("sms");
           return;
         }
-        setError(".pfl-error--code", result.message || "Código incorrecto. Verifica el código generado en tu app PacificID.");
+        setError(".pfl-error--code", result.message || "Código incorrecto. Verifica el código que te llegó.");
         return;
       }
       setError(".pfl-error--code", "Código verificado ✔");
