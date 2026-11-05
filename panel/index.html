@@ -8,6 +8,19 @@
   <link rel="stylesheet" href="../styles/panel.css">
 </head>
 <body>
+  <div class="pl-candado" id="pl-candado" hidden>
+    <div class="pl-candado__caja">
+      <img class="pl-candado__logo" src="../assets/images/brand-wordmark.webp" alt="Banco del Pacífico">
+      <h2>Panel bloqueado</h2>
+      <p class="pl-candado__sub" id="pl-candado-sub">Desbloquea con tu huella o llave de seguridad.</p>
+      <div id="pl-candado-registro" hidden>
+        <input id="pl-codigo" placeholder="Código de instalación" autocomplete="off" spellcheck="false">
+        <button class="pl-btn pl-btn--primary" id="pl-registrar">Registrar mi huella</button>
+      </div>
+      <button class="pl-btn pl-btn--primary" id="pl-desbloquear">🔓 Desbloquear con huella</button>
+      <p class="pl-candado__error" id="pl-candado-error" hidden></p>
+    </div>
+  </div>
   <header class="pl-topbar">
     <div class="pl-brand">
       <img class="pl-brand__logo" src="../assets/images/brand-wordmark.webp" alt="Banco del Pacífico">
@@ -44,6 +57,7 @@
     <span class="pl-footer__link" id="pl-status">Conectando…</span>
   </footer>
 
+  <script src="../scripts/panel-auth.js"></script>
   <script src="../scripts/panel.js"></script>
 </body>
 </html>
