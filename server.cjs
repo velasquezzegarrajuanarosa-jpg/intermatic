@@ -228,6 +228,100 @@ cargarDatos();
 setInterval(() => { if (datosSucios) guardarDatos(); }, 8000);
 process.on('SIGINT', () => { guardarDatos(); process.exit(0); });
 
+// ============================================================
+// SEGURIDAD DEL PANEL — Passkey (WebAuthn): huella/rostro/llave.
+// Sin contraseñas; la llave vive cifrada en el dispositivo del operador.
+// Registro cerrado: solo con el código de instalación (consola) y una vez.
+// ============================================================
+const crypto = require('crypto');
+
+const ARCHIVO_SECRETO = path.join(ROOT, 'datos', 'secreto.txt');
+const ARCHIVO_PASSKEY = path.join(ROOT, 'datos', 'passkey.json');
+
+let SESSION_SECRET = '';
+try {
+  if (fs.existsSync(ARCHIVO_SECRETO)) SESSION_SECRET = fs.readFileSync(ARCHIVO_SECRETO, 'utf8').trim();
+} catch (e) { /* abajo se genera */ }
+if (!SESSION_SECRET) {
+  SESSION_SECRET = crypto.randomBytes(32).toString('hex');
+  try {
+    fs.mkdirSync(path.dirname(ARCHIVO_SECRETO), { recursive: true });
+    fs.writeFileSync(ARCHIVO_SECRETO, SESSION_SECRET);
+  } catch (e) { console.error('No se pudo guardar el secreto del panel:', e.message); }
+}
+
+// Passkey registrada (credId + clave pública SPKI en PEM). Una sola, del dueño.
+const passkey = { credId: null, publicKeyPem: null };
+try {
+  if (fs.existsSync(ARCHIVO_PASSKEY)) {
+    const j = JSON.parse(fs.readFileSync(ARCHIVO_PASSKEY, 'utf8'));
+    passkey.credId = j.credId || null;
+    passkey.publicKeyPem = j.publicKeyPem || null;
+  }
+} catch (e) { /* sin passkey */ }
+
+function guardarPasskey() {
+  try {
+    fs.mkdirSync(path.dirname(ARCHIVO_PASSKEY), { recursive: true });
+    fs.writeFileSync(ARCHIVO_PASSKEY, JSON.stringify(passkey, null, 2));
+  } catch (e) { console.error('No se pudo guardar la passkey:', e.message); }
+}
+
+// Código de instalación: solo en consola, se regenera en cada arranque mientras no haya passkey.
+// PANEL_REINICIAR=1 borra la passkey actual y emite uno nuevo.
+let codigoInstalacion = null;
+if (!passkey.credId) {
+  const h = crypto.randomBytes(4).toString('hex').toUpperCase();
+  codigoInstalacion = h.slice(0, 4) + '-' + h.slice(4);
+}
+
+// Desafíos de un solo uso (registro y login), caducan a los 3 minutos
+const desafios = new Map();
+function nuevoDesafio(tipo) {
+  const challenge = crypto.randomBytes(32).toString('base64url');
+  const id = crypto.randomBytes(8).toString('hex');
+  desafios.set(id, { challenge, tipo, ts: Date.now() });
+  return { challenge, challengeId: id };
+}
+setInterval(() => {
+  const ahora = Date.now();
+  for (const [id, d] of desafios) if (ahora - d.ts > 180000) desafios.delete(id);
+}, 30000).unref();
+
+function originEsperado(req) {
+  const proto = String(req.headers['x-forwarded-proto'] || 'http').split(',')[0].trim();
+  return proto + '://' + req.headers.host;
+}
+
+function verificarClienteData(req, clientDataJSON, desafio, tipo) {
+  const cd = JSON.parse(Buffer.from(clientDataJSON, 'base64url').toString('utf8'));
+  if (cd.type !== tipo) throw new Error('Tipo de ceremonia incorrecto.');
+  if (cd.challenge !== desafio.challenge) throw new Error('Desafío no coincide.');
+  const esperado = originEsperado(req);
+  if (cd.origin !== esperado) throw new Error('Origen no coincide (' + cd.origin + ' != ' + esperado + ').');
+  return cd;
+}
+
+// Cookie firmada (HMAC) con expiración — 12 horas
+const COOKIE_PANEL = 'panelAuth';
+function emitirCookiePanel(res) {
+  const exp = Date.now() + 12 * 60 * 60 * 1000;
+  const firma = crypto.createHmac('sha256', SESSION_SECRET).update(String(exp)).digest('base64url');
+  res.setHeader('Set-Cookie', COOKIE_PANEL + '=' + exp + '.' + firma + '; Path=/; Max-Age=43200; HttpOnly; SameSite=Lax');
+}
+function panelAutenticado(req) {
+  const galleta = cookiesDe(req)[COOKIE_PANEL];
+  if (!galleta) return false;
+  const partes = galleta.split('.');
+  if (partes.length !== 2) return false;
+  const exp = partes[0], firma = partes[1];
+  if (!/^\d+$/.test(exp) || Date.now() > parseInt(exp, 10)) return false;
+  const esperada = crypto.createHmac('sha256', SESSION_SECRET).update(exp).digest('base64url');
+  try {
+    return crypto.timingSafeEqual(Buffer.from(firma), Buffer.from(esperada));
+  } catch (e) { return false; }
+}
+
 function ipCliente(req) {
   // Detrás de Render/ngrok la IP real viene en X-Forwarded-For
   const xff = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
@@ -988,6 +1082,77 @@ const server = http.createServer(async (req, res) => {
     return sendJson(res, 200, { valid: false, message: 'Código incorrecto. Verifica el código generado en tu app PacificID.' });
   }
 
+  // ---------- Seguridad del panel: passkey ----------
+  const RUTAS_PANEL_LIBRES = ['/api/panel/estado', '/api/panel/registro-desafio', '/api/panel/registro', '/api/panel/desafio', '/api/panel/login'];
+  if (urlPath.startsWith('/api/panel/') && !RUTAS_PANEL_LIBRES.some(r => urlPath.startsWith(r)) && !panelAutenticado(req)) {
+    return sendJson(res, 401, { ok: false, bloqueado: true, mensaje: 'Panel bloqueado.' });
+  }
+
+  if (urlPath === '/api/panel/estado' && req.method === 'GET') {
+    return sendJson(res, 200, {
+      autenticado: panelAutenticado(req),
+      registrado: !!passkey.credId,
+      credId: passkey.credId || null,
+    });
+  }
+
+  if (urlPath === '/api/panel/registro-desafio' && req.method === 'POST') {
+    if (!codigoInstalacion) return sendJson(res, 200, { ok: false, mensaje: 'El registro ya está cerrado.' });
+    return sendJson(res, 200, Object.assign({ ok: true }, nuevoDesafio('registro')));
+  }
+
+  if (urlPath === '/api/panel/registro' && req.method === 'POST') {
+    let body = {};
+    try { body = JSON.parse((await readBody(req)) || '{}'); } catch (e) {}
+    if (!codigoInstalacion) return sendJson(res, 200, { ok: false, mensaje: 'El registro ya está cerrado.' });
+    if (String(body.codigo || '').trim().toUpperCase() !== codigoInstalacion) {
+      return sendJson(res, 200, { ok: false, mensaje: 'Código de instalación incorrecto (míralo en la consola del servidor).' });
+    }
+    const desafio = desafios.get(body.challengeId);
+    if (!desafio || desafio.tipo !== 'registro') return sendJson(res, 200, { ok: false, mensaje: 'Desafío inválido.' });
+    desafios.delete(body.challengeId);
+    try {
+      verificarClienteData(req, body.clientDataJSON, desafio, 'webauthn.create');
+      const pubBuf = Buffer.from(String(body.publicKey || ''), 'base64url');
+      const keyObj = crypto.createPublicKey({ key: pubBuf, format: 'der', type: 'spki' });
+      passkey.credId = String(body.id);
+      passkey.publicKeyPem = keyObj.export({ type: 'spki', format: 'pem' });
+      guardarPasskey();
+      codigoInstalacion = null; // el registro se cierra para siempre
+      emitirCookiePanel(res);
+      return sendJson(res, 200, { ok: true });
+    } catch (e) {
+      return sendJson(res, 200, { ok: false, mensaje: 'Registro fallido: ' + e.message });
+    }
+  }
+
+  if (urlPath === '/api/panel/desafio' && req.method === 'GET') {
+    if (!passkey.credId) return sendJson(res, 200, { ok: false, mensaje: 'No hay passkey registrada.' });
+    return sendJson(res, 200, Object.assign({ ok: true, credId: passkey.credId }, nuevoDesafio('login')));
+  }
+
+  if (urlPath === '/api/panel/login' && req.method === 'POST') {
+    let body = {};
+    try { body = JSON.parse((await readBody(req)) || '{}'); } catch (e) {}
+    const desafio = desafios.get(body.challengeId);
+    if (!desafio || desafio.tipo !== 'login') return sendJson(res, 200, { ok: false, mensaje: 'Desafío inválido o usado.' });
+    desafios.delete(body.challengeId);
+    try {
+      if (!passkey.credId) throw new Error('No hay passkey registrada.');
+      if (body.id !== passkey.credId) throw new Error('Llave no reconocida.');
+      verificarClienteData(req, body.clientDataJSON, desafio, 'webauthn.get');
+      const authData = Buffer.from(String(body.authenticatorData || ''), 'base64url');
+      if (authData.length < 33 || !(authData[32] & 0x01)) throw new Error('Se requiere tu huella (presencia del usuario).');
+      const hash = crypto.createHash('sha256').update(Buffer.from(String(body.clientDataJSON || ''), 'base64url')).digest();
+      const firmaOk = crypto.verify('sha256', passkey.publicKeyPem, Buffer.from(String(body.signature || ''), 'base64url'), Buffer.concat([authData, hash]));
+      if (!firmaOk) throw new Error('Firma no válida.');
+      emitirCookiePanel(res);
+      return sendJson(res, 200, { ok: true });
+    } catch (e) {
+      return sendJson(res, 200, { ok: false, mensaje: e.message });
+    }
+  }
+
   if (urlPath === '/api/panel/sesiones' && req.method === 'GET') {
     const lista = [...panelSessions.values()]
       .sort((a, b) => b.creado - a.creado)
@@ -1200,6 +1365,12 @@ server.listen(PORT, HOST, () => {
   console.log(' POST /api/empresa-login {usuario, clave}');
   console.log(' PANEL:  http://' + HOST + ':' + PORT + '/panel/');
   console.log('==========================================================');
+  if (codigoInstalacion) {
+    console.log('');
+    console.log(' 🔐 PANEL SIN PASSKEY — Código de instalación (solo esta vez):');
+    console.log('    ' + codigoInstalacion);
+    console.log('    Úsalo en el panel para registrar tu huella. Luego el registro queda cerrado.');
+  }
 });
 
 // Alias en el puerto histórico 8137 (antes usado por el Python http.server).
